@@ -20,4 +20,9 @@ public class EmployeeVo {
     private String emp_post;
     private EmployeeVo emp_superior_emp;
     private String emp_pw;
+
+    EmployeeVo() {
+        this.setEmp_dep(new DepartmentVo());
+        this.setEmp_pos(new PositionVo());
+    }
 }

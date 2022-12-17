@@ -5,7 +5,6 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @ToString
 public class ScheduleVo {
 
@@ -21,5 +20,10 @@ public class ScheduleVo {
     private int scd_end_year;
     private int scd_end_month;
     private int scd_end_day;
+
+    ScheduleVo() {
+        this.setScd_type(new ScheduleTypeVo());
+        this.setScd_auth_range_type(new ScheduleAuthRangeTypeVo());
+    }
 
 }

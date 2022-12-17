@@ -6,7 +6,6 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @ToString
 public class AttendanceVo {
     private int atd_rcd_no;
@@ -19,4 +18,7 @@ public class AttendanceVo {
     private AttendanceTypeVo atd_type;
     private String atd_rcd_detail;
 
+    AttendanceVo() {
+        this.setAtd_type(new AttendanceTypeVo());
+    }
 }
