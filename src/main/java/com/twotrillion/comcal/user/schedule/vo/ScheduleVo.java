@@ -21,7 +21,7 @@ public class ScheduleVo {
     private int scd_end_month;
     private int scd_end_day;
 
-    ScheduleVo() {
+    public ScheduleVo() {
         this.setScd_type(new ScheduleTypeVo());
         this.setScd_auth_range_type(new ScheduleAuthRangeTypeVo());
     }

@@ -12,10 +12,15 @@ public class JdbcContextConfig {
 	@Bean
     public DataSource dataSource() {
         DataSource dataSource = new DataSource();
+//        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//        dataSource.setUrl("jdbc:mysql://192.168.0.100:3306/db_company_calendar?serverTimezone=Asia/Seoul");
+//        dataSource.setUsername("user0001");
+//        dataSource.setPassword("user0001");
+
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://192.168.0.100:3306/diary_db?serverTimezone=Asia/Seoul");
-        dataSource.setUsername("user0001");
-        dataSource.setPassword("user0001");
+        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/db_company_calendar?serverTimezone=Asia/Seoul");
+        dataSource.setUsername("root");
+        dataSource.setPassword("root");
 
         return dataSource;
     }

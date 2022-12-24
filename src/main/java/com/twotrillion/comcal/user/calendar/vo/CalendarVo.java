@@ -8,4 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class CalendarVo {
+
+    private int year;
 }

@@ -9,16 +9,17 @@ import lombok.*;
 @ToString
 public class AttendanceVo {
     private int atd_rcd_no;
-    private EmployeeVo emp_no;
+    private EmployeeVo emp_info;
     private int atd_year;
-    private int atd_monty;
+    private int atd_month;
     private int atd_day;
     private String atd_start_time;
     private String atd_end_time;
     private AttendanceTypeVo atd_type;
     private String atd_rcd_detail;
 
-    AttendanceVo() {
+    public AttendanceVo() {
+        this.setEmp_info(new EmployeeVo());
         this.setAtd_type(new AttendanceTypeVo());
     }
 }

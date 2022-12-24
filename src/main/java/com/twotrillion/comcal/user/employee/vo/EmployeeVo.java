@@ -5,7 +5,6 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @ToString
 public class EmployeeVo {
     private int emp_no;
@@ -15,13 +14,13 @@ public class EmployeeVo {
     private String emp_email;
     private String emp_phone;
     private String emp_com_num;
-    private char emp_gender;
+    private String emp_gender;
     private String emp_birth;
     private String emp_post;
-    private EmployeeVo emp_superior_emp;
+    private int emp_superior_emp_no;
     private String emp_pw;
 
-    EmployeeVo() {
+    public EmployeeVo() {
         this.setEmp_dep(new DepartmentVo());
         this.setEmp_pos(new PositionVo());
     }
