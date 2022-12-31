@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 	<link href="${pageContext.request.contextPath}/resources/css/include/footer.css" rel="stylesheet" type="text/css">
-	<jsp:include page="./common_js.jsp"/>
 
 <footer>
 	<div id="footer_wrap">

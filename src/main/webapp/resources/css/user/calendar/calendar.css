@@ -144,7 +144,7 @@ section {
 #calendar_wrap .calendar_body .day_name {
   font-size: 12px;
   text-transform: uppercase;
-  color: #99a1a7;
+  color: #51565d;
   text-align: center;
   border-bottom: 1px solid rgba(166, 168, 179, 0.12);
   line-height: 50px;
@@ -159,11 +159,24 @@ section {
   letter-spacing: 1px;
   font-size: 12px;
   box-sizing: border-box;
-  color: #98a0a6;
+  color: #51565d;
   position: relative;
-  pointer-events: none;
-  z-index: 1;
+  /* pointer-events: none; */
 }
+
+#calendar_wrap .calendar_body .calendar_day span.day_word {
+  cursor: pointer;
+}
+
+#calendar_wrap .calendar_body .calendar_day span.etc_schedule {
+  cursor: pointer;
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  font-size: 2.5em;
+  color: #51565d !important;
+}
+
 #calendar_wrap .calendar_body .calendar_day:nth-of-type(7n + 7) {
   border-right: 0;
 }
@@ -181,6 +194,9 @@ section {
 }
 #calendar_wrap .calendar_body .calendar_day:nth-of-type(n + 29):nth-of-type(-n + 35) {
   grid-row: 6;
+}
+#calendar_wrap .calendar_body .calendar_day:nth-of-type(n + 36):nth-of-type(-n + 42) {
+  grid-row: 7;
 }
 #calendar_wrap .calendar_body .calendar_day:nth-of-type(7n + 1) {
   grid-column: 1/1;
@@ -205,10 +221,8 @@ section {
 }
 
 #calendar_wrap .calendar_body .disabled_day {
-  color: rgba(152, 160, 166, 0.6);
   background-color: #ffffff;
   background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f9f9fa' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
-  cursor: not-allowed;
 }
 
 #calendar_wrap .calendar_body .calendar_day span.holiday_name {
@@ -217,95 +231,40 @@ section {
   top: 15px;
 }
 
-.task {
+/* 일정 CSS */
+.schedule {
   border-left-width: 3px;
   padding: 8px 12px;
-  margin: 10px;
   border-left-style: solid;
-  font-size: 14px;
+  font-size: 1em;
   position: relative;
+  height: 34px;
+  z-index: 20;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
 }
-.task--warning {
-  border-left-color: #fdb44d;
-  grid-column: 4/span 3;
-  grid-row: 3;
-  background: #fef0db;
-  align-self: center;
-  color: #fc9b10;
-  margin-top: -5px;
-}
-.task--danger {
-  border-left-color: #fa607e;
-  grid-column: 2/span 3;
-  grid-row: 3;
-  margin-top: 15px;
-  background: rgba(253, 197, 208, 0.7);
-  align-self: end;
-  color: #f8254e;
-}
-.task--info {
-  border-left-color: #4786ff;
-  grid-column: 6/span 2;
-  grid-row: 5;
-  margin-top: 15px;
-  background: rgba(218, 231, 255, 0.7);
-  align-self: end;
-  color: #0a5eff;
-}
-.task--primary {
-  background: #4786ff;
-  border: 0;
-  border-radius: 4px;
-  grid-column: 3/span 3;
-  grid-row: 4;
-  align-self: end;
-  color: #fff;
-  box-shadow: 0 10px 14px rgba(71, 134, 255, 0.4);
-}
-.task__detail {
-  position: absolute;
-  left: 0;
-  top: calc(100% + 10px);
-  background: #fff;
-  border: 1px solid rgba(166, 168, 179, 0.2);
-  color: #000;
-  padding: 20px;
-  box-sizing: border-box;
-  border-radius: 4px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  z-index: 2;
-}
-.task__detail:after, .task__detail:before {
-  bottom: 100%;
-  left: 30%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-}
-.task__detail:before {
-  border-bottom-color: rgba(166, 168, 179, 0.2);
-  border-width: 8px;
-  margin-left: -8px;
-}
-.task__detail:after {
-  border-bottom-color: #fff;
-  border-width: 6px;
-  margin-left: -6px;
-}
-.task__detail h2 {
-  font-size: 15px;
-  margin: 0;
+.private {
+  border-left-color: #00ff5e;
+  background: rgba(182, 255, 179, 0.7);
   color: #51565d;
 }
-.task__detail p {
-  margin-top: 4px;
-  font-size: 12px;
-  margin-bottom: 0;
-  font-weight: 500;
-  color: rgba(81, 86, 93, 0.7);
+.project {
+  border-left-color: #fa607e;
+  background: rgba(253, 197, 208, 0.7);
+  color: #51565d;
+}
+.department {
+  border-left-color: #fdb44d;
+  background: rgba(255, 227, 188, 0.7);
+  color: #51565d;
+}
+.company {
+  border-left-color: #4786ff;
+  background: rgba(218, 231, 255, 0.7);
+  color: #51565d;
 }
 /* calendar body CSS END*/
 
@@ -340,145 +299,6 @@ section {
 /* create schedule button CSS END*/
 /* button CSS END */
 
-/* modal CSS START (modal 공통 부분)*/
-.modal_wrap {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(166, 168, 179, 0.3);
-  z-index: 5000;
-  display: none;
-}
-
-/* select_month_year_modal START*/
-#month_select_modal .month_select_modal_body {
-  position: relative;
-  width: 480px;
-  height: 430px;
-  background-color: #51565d;
-  border-radius: 13px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  top: 200px;
-  color: #fafbfd;
-}
-
-#month_select_modal .month_select_modal_body .month_list_header {
-  width: 480px;
-  height: 70px;
-  border-bottom: 1px solid #fafbfd;
-  display: flex;
-}
-
-#month_select_modal .month_select_modal_body .month_list_header .modal_year_word {
-  font-size: 1.7em;
-  font-weight: 600;
-  height: 70px;
-  width: 76px;
-  line-height: 70px;
-  padding-left: 20px;
-  cursor: pointer;
-  flex: 1;
-}
-
-#month_select_modal .month_select_modal_body .month_list_header .year_arrows {
-  height: 70px;
-  line-height: 70px;
-  font-size: 2em;
-  flex: 1;
-  text-align: right;
-  padding-right: 20px;
-}
-
-#month_select_modal .month_select_modal_body .month_list_header .year_arrows i {
-  margin-left: 5px;
-  cursor: pointer;
-}
-
-#month_select_modal .month_select_modal_body .month_list_body {
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
-#month_select_modal .month_select_modal_body .month_list_body .month_word {
-  width: 120px;
-  height: 120px;
-  line-height: 120px;
-  font-size: 1.3em;
-  cursor: pointer;
-  box-sizing: border-box;
-  /* border: 1px solid #51565d; */
-}
-
-#month_select_modal .month_select_modal_body .month_list_body .month_word:nth-of-type(1) {
-  border-right: 1px solid #51565d;
-  border-bottom: 1px solid #51565d;;
-}
-
-#month_select_modal .month_select_modal_body .month_list_body .month_word:nth-of-type(2),
-#month_select_modal .month_select_modal_body .month_list_body .month_word:nth-of-type(3) {
-  border-right: 1px solid #51565d;
-  border-left: 1px solid #51565d;
-  border-bottom: 1px solid #51565d;;
-}
-
-#month_select_modal .month_select_modal_body .month_list_body .month_word:nth-of-type(4) {
-  border-left: 1px solid #51565d;
-  border-bottom: 1px solid #51565d;;
-}
-
-#month_select_modal .month_select_modal_body .month_list_body .month_word:nth-of-type(5) {
-  border-top: 1px solid #51565d;
-  border-right: 1px solid #51565d;
-  border-bottom: 1px solid #51565d;;
-}
-
-#month_select_modal .month_select_modal_body .month_list_body .month_word:nth-of-type(6),
-#month_select_modal .month_select_modal_body .month_list_body .month_word:nth-of-type(7) {
-  border: 1px solid #51565d;
-}
-
-#month_select_modal .month_select_modal_body .month_list_body .month_word:nth-of-type(8) {
-  border-top: 1px solid #51565d;
-  border-left: 1px solid #51565d;
-  border-bottom: 1px solid #51565d;;
-}
-
-#month_select_modal .month_select_modal_body .month_list_body .month_word:nth-of-type(9) {
-  border-top: 1px solid #51565d;
-  border-right: 1px solid #51565d;
-}
-
-#month_select_modal .month_select_modal_body .month_list_body .month_word:nth-of-type(10),
-#month_select_modal .month_select_modal_body .month_list_body .month_word:nth-of-type(11) {
-  border-top: 1px solid #51565d;
-  border-right: 1px solid #51565d;
-  border-left: 1px solid #51565d;
-}
-
-#month_select_modal .month_select_modal_body .month_list_body .month_word:nth-of-type(12) {
-  border-top: 1px solid #51565d;
-  border-left: 1px solid #51565d;
-}
-
-#month_select_modal .month_select_modal_body .month_list_body .month_word:hover {
-  border-color: #fafbfd;
-}
-
-#month_select_modal .month_select_modal_body .month_list_body .selected {
-  background-color: #98a0a6;
-  border-left: 1px solid #98a0a6;
-}
-
-
-/* select_month_year_modal END*/
-
-/* modal CSS END */
-
-
 /* class attribute CSS */
 .color_blue {
   color: #0a5eff !important;
@@ -488,6 +308,16 @@ section {
   color: #f8254e !important;
 }
 
-.today {
+.today::after {
+  position: absolute;
+  display: block;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 120px;
   border: 2px solid #51565d !important;
+  box-sizing: border-box;
+  z-index: 6000;
+  pointer-events: none;
 }

@@ -11,6 +11,7 @@
 
 	<!-- css -->
 	<link href="<c:url value="/resources/css/include/common.css"/>" rel="stylesheet" type="text/css">
+	<link href="<c:url value="/resources/css/include/datepicker.css"/>" rel="stylesheet" type="text/css">
 
 	<!-- js -->
 	<jsp:include page="../include/common_js.jsp"/>

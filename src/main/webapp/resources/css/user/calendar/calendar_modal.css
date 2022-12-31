@@ -1,0 +1,421 @@
+/* modal 공통 부분 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(166, 168, 179, 0.3);
+    z-index: 9000;
+    display: none;
+}
+
+.modal .modal_window {
+    position: relative;
+    background-color: #51565d;
+    border-radius: 13px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #fafbfd;
+    overflow: hidden;
+}
+  
+/* select_month_year_modal START*/
+#month_select_modal .modal_window {
+    width: 480px;
+    height: 430px;
+}
+  
+#month_select_modal .modal_window .month_list_header {
+    width: 480px;
+    border-bottom: 1px solid #fafbfd;
+    display: flex;
+}
+  
+#month_select_modal .modal_window .month_list_header .year_word {
+    font-size: 1.7em;
+    font-weight: 600;
+    height: 70px;
+    width: 76px;
+    line-height: 70px;
+    padding-left: 20px;
+    flex: 1;
+}
+  
+#month_select_modal .modal_window .month_list_header .year_arrows {
+    height: 70px;
+    line-height: 70px;
+    font-size: 2em;
+    flex: 1;
+    text-align: right;
+    padding-right: 20px;
+}
+  
+#month_select_modal .modal_window .month_list_header .year_arrows i {
+    margin-left: 5px;
+    cursor: pointer;
+}
+  
+#month_select_modal .modal_window .month_list_body {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+  
+#month_select_modal .modal_window .month_list_body .month_word {
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
+    font-size: 1.3em;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+  
+#month_select_modal .modal_window .month_list_body .month_word:nth-of-type(1) {
+    border-right: 1px solid #51565d;
+    border-bottom: 1px solid #51565d;;
+}
+  
+#month_select_modal .modal_window .month_list_body .month_word:nth-of-type(2),
+#month_select_modal .modal_window .month_list_body .month_word:nth-of-type(3) {
+    border-right: 1px solid #51565d;
+    border-left: 1px solid #51565d;
+    border-bottom: 1px solid #51565d;;
+}
+  
+#month_select_modal .modal_window .month_list_body .month_word:nth-of-type(4) {
+    border-left: 1px solid #51565d;
+    border-bottom: 1px solid #51565d;;
+}
+  
+#month_select_modal .modal_window .month_list_body .month_word:nth-of-type(5) {
+    border-top: 1px solid #51565d;
+    border-right: 1px solid #51565d;
+    border-bottom: 1px solid #51565d;;
+}
+  
+#month_select_modal .modal_window .month_list_body .month_word:nth-of-type(6),
+#month_select_modal .modal_window .month_list_body .month_word:nth-of-type(7) {
+    border: 1px solid #51565d;}
+  
+#month_select_modal .modal_window .month_list_body .month_word:nth-of-type(8) {
+    border-top: 1px solid #51565d;
+    border-left: 1px solid #51565d;
+    border-bottom: 1px solid #51565d;;
+}
+  
+#month_select_modal .modal_window .month_list_body .month_word:nth-of-type(9) {
+    border-top: 1px solid #51565d;
+    border-right: 1px solid #51565d;
+}
+  
+#month_select_modal .modal_window .month_list_body .month_word:nth-of-type(10),
+#month_select_modal .modal_window .month_list_body .month_word:nth-of-type(11) {
+    border-top: 1px solid #51565d;
+    border-right: 1px solid #51565d;
+    border-left: 1px solid #51565d;
+}
+  
+#month_select_modal .modal_window .month_list_body .month_word:nth-of-type(12) {
+    border-top: 1px solid #51565d;
+    border-left: 1px solid #51565d;
+}
+  
+#month_select_modal .modal_window .month_list_body .month_word:hover {
+    border-color: #fafbfd;
+}
+  
+#month_select_modal .modal_window .month_list_body .selected {
+    background-color: #98a0a6;
+    border-color: #98a0a6;
+}
+/* select_month_year_modal END*/
+
+/* schedule modal START*/
+/* schedule modal 공통 START*/
+.schedule_modal .modal_window {
+    width: 510px;
+}
+
+.schedule_modal .modal_window .schedule_modal_header .header_word {
+    height: 60px;
+    line-height: 60px;
+    font-size: 1.5em;
+    text-align: center;
+    border-bottom: 1px solid #fafbfd;
+
+}
+
+.schedule_modal .modal_window .schedule_modal_body {
+    margin-top: 20px;
+}
+
+.schedule_modal .modal_window .schedule_modal_body .section  { 
+    margin-bottom: 25px;
+}
+
+.schedule_modal .modal_window .schedule_modal_body .section .section_word {
+    font-size: 1.5em;
+    padding-left: 18px;
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.schedule_modal .modal_window .warning_word {
+    font-size: 0.7em;
+    position: absolute;
+    right: 45px;
+    color: #f8254e;
+    display: none;
+}
+
+.schedule_modal .modal_window .schedule_modal_body .btn_section {
+    height: 60px;
+    line-height: 60px;
+    display: flex;
+}
+
+.schedule_modal .modal_window .schedule_modal_body .btn_section > input {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    background-color: #51565d;
+    border-radius: 0px;
+    color: #fafbfd;
+    font-size: 1.5em;
+}
+
+.schedule_modal .modal_window .schedule_modal_body .btn_section > input:active {
+    background-color: #4786ff;
+}
+
+.schedule_modal .scd_type_section .select_wrap {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    margin: 0 auto;
+}
+
+.schedule_modal .scd_type_section .select_wrap select {
+    width: 190px;
+    height: 40px;
+    font-size: 1.1em;
+}
+
+.schedule_modal .scd_type_section .scd_type_wrap {
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    width: max-content;
+}
+
+.schedule_modal .scd_type_section .select_wrap select:nth-of-type(1) {
+    margin-right: 40px;
+}
+
+.schedule_modal .scd_type_section .scd_type_wrap > input {
+    width: 190px;
+    height: 40px;
+}
+
+.schedule_modal .scd_type_section .scd_type_wrap > input:nth-of-type(1) {
+    margin-right: 40px;
+}
+
+.schedule_modal .scd_start_end_date_section .datepicker_wrap {
+    width: max-content;
+    margin: 0 auto;
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.schedule_modal .scd_start_end_date_section .datepicker_wrap span {
+    font-size: 2em;
+    margin: 0 10px 0;
+}
+
+.schedule_modal .scd_writer_section .scd_writer_wrap {
+    text-align: center;
+}
+
+.schedule_modal .std_title_section .scd_title_wrap {
+    text-align: center;
+}
+
+.schedule_modal .std_detail_section .scd_detail_wrap {
+    text-align: center;
+}
+
+.schedule_modal .btn_section .schedule_modal_btn {
+    border-top: 1px solid #fafbfd;
+    border-left: 1px solid #fafbfd;
+}
+
+.schedule_modal .btn_section .schedule_modal_btn:first-child {
+    border-top: 1px solid #fafbfd;
+    border-left: 0px;
+}
+/* schedule modal 공통 END*/
+
+/* display_schedule_detail_modal START*/
+#display_schedule_detail_modal input,
+#display_schedule_detail_modal select,
+#display_schedule_detail_modal .ui-datepicker-trigger,
+#display_schedule_detail_modal textarea {
+    cursor: default;
+}
+
+#display_schedule_detail_modal .btn_section input {
+    cursor: pointer;
+}
+
+
+#display_schedule_detail_modal .btn_section .warning_btn {
+    color: #f8254e;
+}
+
+/* display_schedule_detail_modal END*/
+/* schedule_modify_modal START*/
+#schedule_modify_modal input[name="scd_target_name"],
+#schedule_modify_modal input[name="scd_type_name"],
+#schedule_modify_modal input[name="scd_writer_name"] {
+    cursor: default;
+}
+
+/* schedule_modify_modal END*/
+/* schedule_list_modal START*/
+
+#schedule_list_modal .schedule_modal_header .date_word {
+    height: 60px;
+    border-bottom: 1px solid #fafbfd;
+    text-align: center;
+}
+
+#schedule_list_modal .schedule_modal_header .date_word span {
+    height: 60px;
+    line-height: 60px;
+    font-size: 1.5em;
+}
+
+#schedule_list_modal .schedule_modal_header .date_word .day_arrow {
+    cursor: pointer;
+    margin: 0 3px;
+}
+
+#schedule_list_modal .schedule_modal_header .date_word .day_arrow:active {
+    color: #4786ff;
+}
+
+#schedule_list_modal .schedule_modal_body {
+    margin: 0;
+}
+#schedule_list_modal .schedule_list {
+    height: 500px;
+    overflow: auto;
+}
+
+#schedule_list_modal .schedule_list::-webkit-scrollbar {
+    width: 10px;
+}
+
+#schedule_list_modal .schedule_list::-webkit-scrollbar-thumb {
+	background-color: #2f3542;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+}
+
+#schedule_list_modal .schedule_list::-webkit-scrollbar-track {
+	background-color: grey;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
+}
+
+#schedule_list_modal .schedule_modal_body .modal_schedule_type_checkbox_wrap {
+    height: 34px;
+    line-height: 34px;
+    padding-right: 40px;
+    text-align: center;
+}
+  
+#schedule_list_modal .schedule_modal_body .modal_schedule_type_checkbox_wrap input[type="checkbox"] {
+    display: none;
+}
+  
+#schedule_list_modal .schedule_modal_body .modal_schedule_type_checkbox_wrap input[type="checkbox"] + label {
+    margin-left: 40px;
+    cursor: pointer;
+}
+  
+#schedule_list_modal .schedule_modal_body .modal_schedule_type_checkbox_wrap input[type="checkbox"] + label > span{
+    vertical-align: middle;
+    padding-left: 5px;
+    font-size: 0.9em;
+    color: #fafbfd;
+}
+  
+#schedule_list_modal .schedule_modal_body .modal_schedule_type_checkbox_wrap input[type="checkbox"] + label:before{
+    content:"";
+    display:inline-block;
+    width:11px;
+    height:11px;
+    border-radius: 4px;
+    vertical-align:middle;
+    border:1px solid #fafbfd;
+}
+  
+#schedule_list_modal .schedule_modal_body .modal_schedule_type_checkbox_wrap input[value="0"]:checked + label:before{
+    content:"";
+    background-color:#7afa91;
+    border-color:#00ff5e;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+  
+#schedule_list_modal .schedule_modal_body .modal_schedule_type_checkbox_wrap input[value="1"]:checked + label:before{
+    content:"";
+    background-color:#fa607e;
+    border-color: #f8254e;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+  
+#schedule_list_modal .schedule_modal_body .modal_schedule_type_checkbox_wrap input[value="2"]:checked + label:before{
+    content:"";
+    background-color:#fdb44d;
+    border-color: #fc9b10;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+  
+#schedule_list_modal .schedule_modal_body .modal_schedule_type_checkbox_wrap input[value="3"]:checked + label:before{
+    content:"";
+    background-color:#4786ff;
+    border-color: #0a5eff;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.modal_schedule {
+    border-left-width: 10px;
+    border-left-style: solid;
+    padding: 8px 0;
+    font-size: 1.2em;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+
+/* schedule_list_modal END*/
+
+/* schedule modal END*/
+  

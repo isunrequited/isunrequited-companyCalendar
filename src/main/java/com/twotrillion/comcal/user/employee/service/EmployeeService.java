@@ -2,6 +2,7 @@ package com.twotrillion.comcal.user.employee.service;
 
 import com.twotrillion.comcal.user.employee.dao.EmployeeDao;
 import com.twotrillion.comcal.user.employee.vo.EmployeeVo;
+import com.twotrillion.comcal.user.schedule.vo.ScheduleVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,17 +19,18 @@ public class EmployeeService {
     EmployeeDao employeeDao;
 
     public Map<String, String> login_confirm(EmployeeVo employeeVo, HttpSession session) {
-        System.out.println("[MemberService] login_cofirm() called");
+        System.out.println("[MemberService] login_confirm() called");
 
         EmployeeVo logged_in_employee_vo = employeeDao.login_confirm(employeeVo);
 
         Map<String, String> map = new HashMap<>();
 
         if (logged_in_employee_vo == null) {
-            System.out.println("LOG-IN SUCCESS!!");
+            System.out.println("LOG-IN FAIL!!");
             map.put("result", "fail");
         } else {
-            System.out.println("LOG-IN FAIL!!");
+            System.out.println("LOG-IN SUCCESS!!");
+            System.out.println("logged_in_employee_vo = " + logged_in_employee_vo);
             session.setAttribute("logged_in_employee_vo", logged_in_employee_vo);
             session.setMaxInactiveInterval(60 * 30);
             map.put("result","success");
@@ -187,4 +189,34 @@ public class EmployeeService {
         employeeDao.create_temp_account(employeeVos);
 
     }
+
+    public Map<String, Object> get_logged_in_emp_no(HttpSession session) {
+        System.out.println("[MemberService] get_logged_in_emp_no() CALLED!!");
+        Map<String, Object> map = new HashMap<>();
+
+        EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
+        if (logged_in_employee_vo == null) {
+            map.put("result", "fail");
+        } else {
+            map.put("result", "success");
+            map.put("logged_in_emp_no", logged_in_employee_vo.getEmp_no());
+        }
+        return map;
+    }
+
+    public Map<String, Object> get_logged_in_emp_dep(HttpSession session) {
+        System.out.println("[MemberService] get_logged_in_emp_dep() CALLED!!");
+        Map<String, Object> map = new HashMap<>();
+
+        EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
+        if (logged_in_employee_vo == null) {
+            map.put("result", "fail");
+        } else {
+            map.put("result", "success");
+            map.put("dep_no", logged_in_employee_vo.getEmp_dep().getDep_type_no());
+            map.put("dep_name", logged_in_employee_vo.getEmp_dep().getDep_type_name());
+        }
+        return map;
+    }
+
 }

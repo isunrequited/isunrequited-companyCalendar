@@ -46,4 +46,26 @@ public class EmployeeController {
         return map;
     }
 
+    @RequestMapping(value = "/get_logged_in_emp_no" , method = RequestMethod.POST)
+    @ResponseBody
+    public Object get_logged_in_emp_no(HttpSession session) {
+        System.out.println("[EmployeeController] get_logged_in_emp_no() called");
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map = employeeService.get_logged_in_emp_no(session);
+
+        return map;
+    }
+
+    @RequestMapping(value = "/get_logged_in_emp_dep" , method = RequestMethod.POST)
+    @ResponseBody
+    public Object get_logged_in_emp_dep(HttpSession session) {
+        System.out.println("[EmployeeController] get_logged_in_emp_dep() called");
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map = employeeService.get_logged_in_emp_dep(session);
+
+        return map;
+    }
+
 }
