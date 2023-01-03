@@ -5,11 +5,13 @@ import com.twotrillion.comcal.user.project.vo.ProjectVo;
 import com.twotrillion.comcal.user.schedule.vo.ScheduleVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,19 +25,25 @@ public class ProjectDao {
         System.out.println("[ProjectDao] get_projects_by_emp_no() CALLED!!");
 
         String sql = "SELECT p.pjt_no pjt_no, " +
-                            "p.pjt_title pjt_title, " +
-                            "p.pjt_dep_no pjt_dep_no, " +
-                            "p.pjt_manager_emp_no pjt_manager_emp_no, " +
-                            "p.pjt_start_year pjt_start_year, " +
-                            "p.pjt_start_month pjt_start_month, " +
-                            "p.pjt_start_day pjt_start_day, " +
-                            "p.pjt_end_year pjt_end_year, " +
-                            "p.pjt_end_month pjt_end_month, " +
-                            "p.pjt_end_day pjt_end_day " +
-                    "FROM tbl_emp_pjt ep " +
-                    "JOIN tbl_pjt p " +
-                        "ON ep.pjt_no = p.pjt_no " +
-                    "WHERE ep.emp_no = ?";
+                "p.pjt_title pjt_title, " +
+                "d.dep_type_no dep_type_no, " +
+                "d.dep_type_name dep_type_name, " +
+                "e.emp_no emp_no, " +
+                "e.emp_name emp_name, " +
+                "p.pjt_start_year pjt_start_year, " +
+                "p.pjt_start_month pjt_start_month, " +
+                "p.pjt_start_day pjt_start_day, " +
+                "p.pjt_end_year pjt_end_year, " +
+                "p.pjt_end_month pjt_end_month, " +
+                "p.pjt_end_day pjt_end_day " +
+                "FROM tbl_emp_pjt ep " +
+                "JOIN tbl_pjt p " +
+                "ON ep.pjt_no = p.pjt_no " +
+                "JOIN tbl_emp e " +
+                "ON p.pjt_manager_emp_no = e.emp_no " +
+                "JOIN tbl_dep_type d " +
+                "ON p.pjt_dep_no = d.dep_type_no " +
+                "WHERE ep.emp_no = ?";
 
         List<ProjectVo> projectVos = new ArrayList<>();
         try {
@@ -45,8 +53,10 @@ public class ProjectDao {
                     ProjectVo projectVo = new ProjectVo();
                     projectVo.setPjt_no(rs.getInt("pjt_no"));
                     projectVo.setPjt_title(rs.getString("pjt_title"));
-                    projectVo.getPjt_dep().setDep_type_no(rs.getInt("pjt_dep_no"));
-                    projectVo.getPjt_manager_emp().setEmp_no(rs.getInt("pjt_manager_emp_no"));
+                    projectVo.getPjt_dep().setDep_type_no(rs.getInt("dep_type_no"));
+                    projectVo.getPjt_dep().setDep_type_name(rs.getString("dep_type_name"));
+                    projectVo.getPjt_manager_emp().setEmp_no(rs.getInt("emp_no"));
+                    projectVo.getPjt_manager_emp().setEmp_name(rs.getString("emp_name"));
                     projectVo.setPjt_start_year(rs.getInt("pjt_start_year"));
                     projectVo.setPjt_start_month(rs.getInt("pjt_start_month"));
                     projectVo.setPjt_start_day(rs.getInt("pjt_start_day"));
@@ -119,5 +129,76 @@ public class ProjectDao {
 
 
         return projectVos.size() > 0 ? projectVos.get(0).getPjt_title() : "";
+    }
+
+    public int create_project_confirm(ProjectVo projectVo) {
+        System.out.println("[EmployeeDao] create_project_confirm() called");
+
+        String sql = "INSERT INTO tbl_pjt( "
+                + "pjt_title, "
+                + "pjt_dep_no, "
+                + "pjt_manager_emp_no, "
+                + "pjt_start_year, "
+                + "pjt_start_month, "
+                + "pjt_start_day, "
+                + "pjt_end_year, "
+                + "pjt_end_month, "
+                + "pjt_end_day, "
+                + "pjt_reg_date, "
+                + "pjt_mod_date) "
+                + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())";
+
+
+
+        int pjt_no = -1;
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        try {
+            jdbcTemplate.update(new PreparedStatementCreator() {
+
+                @Override
+                public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                    PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    pstmt.setString(1, projectVo.getPjt_title());
+                    pstmt.setInt(2, projectVo.getPjt_dep().getDep_type_no());
+                    pstmt.setInt(3, projectVo.getPjt_manager_emp().getEmp_no());
+                    pstmt.setInt(4, projectVo.getPjt_start_year());
+                    pstmt.setInt(5, projectVo.getPjt_start_month());
+                    pstmt.setInt(6, projectVo.getPjt_start_day());
+                    pstmt.setInt(7, projectVo.getPjt_end_year());
+                    pstmt.setInt(8, projectVo.getPjt_end_month());
+                    pstmt.setInt(9, projectVo.getPjt_end_day());
+
+
+                    return pstmt;
+                }
+            }, keyHolder);
+
+            pjt_no = keyHolder.getKey().intValue();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pjt_no;
+    }
+
+    public int create_emp_project_confirm(int pjt_no, ProjectVo projectVo) {
+        System.out.println("[EmployeeDao] create_emp_project_confirm() called");
+        String sql = "INSERT INTO tbl_emp_pjt(emp_no, pjt_no, emp_pjt_reg_date, emp_pjt_mod_date) " +
+                "VALUE (?, ?, NOW(), NOW())";
+
+        int result = -1;
+
+        try {
+            for (int emp_no : projectVo.getPjt_member()) {
+                result = jdbcTemplate.update(sql, emp_no, pjt_no);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+
     }
 }

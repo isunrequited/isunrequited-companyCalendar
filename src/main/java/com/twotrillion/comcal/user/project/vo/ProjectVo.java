@@ -19,6 +19,7 @@ public class ProjectVo {
     private int pjt_end_year;
     private int pjt_end_month;
     private int pjt_end_day;
+    private int[] pjt_member;
     
     public ProjectVo() {
         this.setPjt_dep(new DepartmentVo());

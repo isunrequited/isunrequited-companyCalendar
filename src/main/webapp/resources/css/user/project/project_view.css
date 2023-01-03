@@ -7,6 +7,7 @@ section #pjt_wrap {
 	border-radius: 10px;
 	background: #fff;
 	max-width: 1600px;
+	min-height: 790px;
 } 
 
 #pjt_wrap .pjt_header {
@@ -37,14 +38,14 @@ section #pjt_wrap .pjt_main_content {
 	flex-wrap: wrap;
 }
 
-section #pjt_wrap .pjt_main_content .pjt_detail_content ul {
+section #pjt_wrap .pjt_main_content .pjt_content ul {
 	line-height: 40px;
 	border-collapse: collapse;
 	margin-bottom: 3px;
 	list-style: none;
 }
 
-section #pjt_wrap .pjt_main_content .pjt_detail_content ul li {
+section #pjt_wrap .pjt_main_content .pjt_content ul li {
 	width: 310px;
 	border-radius: 20px;
 	margin-right: 30px;
@@ -52,7 +53,7 @@ section #pjt_wrap .pjt_main_content .pjt_detail_content ul li {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
 }
 	
-section #pjt_wrap .pjt_main_content .pjt_detail_content ul li div.item_content_top{
+section #pjt_wrap .pjt_main_content .pjt_content ul li div.item_content_top{
 	margin: 0;
 	font-size: 0.9em;
 	font-weight: bolder;
@@ -60,7 +61,7 @@ section #pjt_wrap .pjt_main_content .pjt_detail_content ul li div.item_content_t
 	border-bottom: 2.2px solid #ccc;
 }
 
-section #pjt_wrap .pjt_main_content .pjt_detail_content ul li p.item_content{
+section #pjt_wrap .pjt_main_content .pjt_content ul li p.pjt_title{
 	margin: 10px 0 0 0;
 	font-size: 1.4em;
 	font-weight: bolder;
@@ -69,13 +70,13 @@ section #pjt_wrap .pjt_main_content .pjt_detail_content ul li p.item_content{
 	color: #666666;
 }
 
-section #pjt_wrap .pjt_main_content .pjt_detail_content ul li p.item_content_date{
+section #pjt_wrap .pjt_main_content .pjt_content ul li p.pjt_date{
 	margin: 0;
 	position: relative;
 	font-size: 0.8em;
 }
 
-section #pjt_wrap .pjt_main_content .pjt_detail_content ul li div.item_content_bot{
+section #pjt_wrap .pjt_main_content .pjt_content ul li div.item_content_bot{
 	height: 30px;
 	background-color: rgba(69, 161, 247, 0.75);
 	border-radius: 0 0 20px 20px;

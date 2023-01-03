@@ -155,4 +155,29 @@ public class EmployeeDao {
 
         return departmentVos.size() > 0 ? departmentVos.get(0).getDep_type_name() : "";
     }
+
+    public List<EmployeeVo> get_dep_member_by_dep_no(Integer dep_no) {
+        System.out.println("[EmployeeDao] get_dep_member_by_dep_no() called");
+
+        String sql = "SELECT emp_no, emp_name FROM tbl_emp WHERE emp_dep_no = ?";
+
+        List<EmployeeVo> employeeVos = new ArrayList<>();
+        try {
+            employeeVos = jdbcTemplate.query(sql, new RowMapper<EmployeeVo>() {
+                @Override
+                public EmployeeVo mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    EmployeeVo employeeVo = new EmployeeVo();
+
+                    employeeVo.setEmp_no(rs.getInt("emp_no"));
+                    employeeVo.setEmp_name(rs.getString("emp_name"));
+
+                    return employeeVo;
+                }
+            }, dep_no);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return employeeVos;
+    }
 }

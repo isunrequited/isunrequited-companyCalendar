@@ -1,25 +1,22 @@
+var muliselect1;
+
 // 프로젝트 기본 세팅
 function project_ready() {
 	console.log('PROJECT READY!!');
 
 	add_project_events();
-	set_multiselect();
-	display_project_list();
-
-	// closeDetail()
-	// ajax_informationItem()
-	// ajax_registlItem()
+	get_project_list();
 }
 
 function set_multiselect() {
 	// multiselect 기능 설정
-	mobiscroll.setOptions({
+		mobiscroll.setOptions({
 		locale: mobiscroll.localeKo,                                         
 		theme: 'windows',                                                        
 		themeVariant: 'light'                                                
 	});
 
-	mobiscroll.select('#pjt_member_multiple_select', {
+		muliselect1 = mobiscroll.select('#pjt_member_multiple_select', {
 		inputElement: document.getElementById('demo-multiple-select-input') 
 	});
 }
@@ -39,26 +36,73 @@ function add_project_events() {
 		display_create_project_modal();
 	});
 
-	$('#pjt_member_multiple_select').change(function() {
-		console.log($('#pjt_member_multiple_select').val());
-	});
 }
 
 // 프로젝트 생성 modal 닫기
 function create_project_modal_close() {
 	$('#create_project_modal').css('display', 'none');
+	muliselect1.destroy();
 	$('#create_project_button').css('display', 'block');
 }
 
 // 프로젝트 생성 modal 열기 - 부서 정보와 등록자 이름 가져오기
 function display_create_project_modal() {
 	$('#create_project_button').css('display', 'none');
+	
+	let msg1 = {};
+    $.ajax({
+        url: ctx + "/employee/get_logged_in_emp_info",
+        type: "POST",
+        data: JSON.stringify(msg1), 
+        contentType: 'application/json; charset=utf-8;', 
+        dataType: "json",
+        success: function(result) {
+            if (result.result == 'success'){
+              
+              	$('#create_project_modal input[name="pjt_dep_no"]').val(result.dep_no);
+              	$('#create_project_modal input[name="pjt_manage_emp_no"]').val(result.emp_no);
+              	$('#create_project_modal input[name="pjt_dep_name"]').val(result.dep_name);
+              	$('#create_project_modal input[name="pjt_manage_emp_name"]').val(result.emp_name);
+              	
+              	$('#pjt_date_warning').css('display', 'none');
+			    $('#pjt_title_warning').css('display', 'none');
+			    $('#pjt_member_warning').css('display', 'none');
+				$('#create_project_modal .datepicker > input').datepicker("setDate", new Date());
+				
+				let msg2 = {
+					dep_no : result.dep_no
+				};
+				
+				console.log(msg2);
+			    $.ajax({
+			        url: ctx + "/employee/get_dep_member_by_dep_no",
+			        type: "POST",
+			        data: JSON.stringify(msg2), 
+			        contentType: 'application/json; charset=utf-8;', 
+			        dataType: "json",
+			        success: function(result2) {
+						if (result2.result == 'success'){
+							
+							$('#pjt_member_multiple_select option').remove();
+							
+							for (let i = 0; i < result2.employeeVos.length; i++) {
+								$('#pjt_member_multiple_select').append('<option value="' + result2.employeeVos[i].emp_no +'">' + result2.employeeVos[i].emp_name +'</option>')
+							}
+							
+							
+							set_multiselect();
+						}
+					}
+				});
+				
+				$('#create_project_modal').css('display', 'block');
+                
+            }
+        }
+    });
 
-    $('#pjt_date_warning').css('display', 'none');
-    $('#pjt_title_warning').css('display', 'none');
-    $('#pjt_member_warning').css('display', 'none');
-	$('#create_project_modal .datepicker > input').datepicker("setDate", new Date());
-	$('#create_project_modal').css('display', 'block');
+    
+	
 }
 
 // 프로젝트 등록 컨펌
@@ -67,12 +111,12 @@ function create_project_modal_confirm() {
 	let form = document.create_project_form;
 
     let pjt_dep_no = form.pjt_dep_no.value;
-    let pjt_manage_emp_no = form.pjt_manage_emp_no.value;
+    let pjt_manager_emp_no = form.pjt_manage_emp_no.value;
     let pjt_start_date = form.pjt_start_date.value;
     let pjt_end_date = form.pjt_end_date.value;
     let pjt_title = form.pjt_title.value;
-    let pjt_member = form.pjt_member.value;
-
+    let pjt_member = $('#pjt_member_multiple_select').val();
+	
 	// 배열로 나옴 [년, 월, 일]
     pjt_start_date = datepicker_parsing(pjt_start_date);
     pjt_end_date = datepicker_parsing(pjt_end_date);
@@ -85,50 +129,99 @@ function create_project_modal_confirm() {
     } else if (pjt_member <= 0) {
 		$('#create_project_modal #pjt_member_warning').css('display', 'block');
 	} else {
+		
 		// ajax 통신
+		let pjt_dep = {
+			dep_type_no : pjt_dep_no
+		};
+		
+		let pjt_manager_emp = {
+			emp_no : pjt_manager_emp_no
+		};
+		
+		
+		let msg = {
+			pjt_dep : pjt_dep,
+		    pjt_manager_emp : pjt_manager_emp,
+		    pjt_start_year : pjt_start_date[0],
+		    pjt_start_month : pjt_start_date[1],
+		    pjt_start_day : pjt_start_date[2],
+		    pjt_end_year : pjt_end_date[0],
+		    pjt_end_month : pjt_end_date[1],
+		    pjt_end_day : pjt_end_date[2],
+		    pjt_title : pjt_title,
+		    pjt_member : pjt_member
+		};
+		$.ajax({
+			url: ctx + '/project/create_project_confirm',
+			type:'post',
+			data: JSON.stringify(msg),
+			contentType: 'application/json; cahrset=utf-8;',
+			datatype: 'json',
+			success: function(data){
+				if(data.result == 'success') {
+					form.reset();
+					create_project_modal_close();
+					get_project_list();
+				}
+			}
+		
+		});
 	}
 }
 
 // 프로젝트 목록 가져오기
-function ajax_informationItem(){
-	console.log('ajax_informationItem1() CALLED!!')
+function get_project_list(){
+	console.log('get_project_list() CALLED!!')
+	$('#pjt_wrap .pjt_main_content .pjt_content').remove();
 	var msg ={
 		
 	}	
+	
 	$.ajax({
-		url: ctx + '/project/information_confirm',
+		url: ctx + '/project/get_project_list',
 		type:'post',
 		data: JSON.stringify(msg),
 		contentType: 'application/json; cahrset=utf-8;',
 		datatype: 'json',
 		success: function(data){
-			console.log('AJAX SUCCESS - ajax_informationItem()');
-			$('#pjt_wrap .pjt_main_content ul').remove();
-			let projectVos = data.projectVos;
-			console.log(projectVos);
-			for(let i = 0; i < projectVos.length; i++ ){
-			let projectVo = data.projectVos[i];
-			console.log(projectVo);
-			
-			let pjt_no = projectVo.pjt_no;
-			let pjt_title = projectVo.pjt_title;
-			let pjt_dep_no = projectVo.pjt_dep_no;
-			let pjt_manager_emp = projectVo.pjt_manager_emp;
-			let pjt_start_year = projectVo.pjt_start_year;
-			let pjt_start_month = projectVo.pjt_start_month;
-			let pjt_end_year = projectVo.pjt_end_year;
-			let pjt_end_month = projectVo.pjt_end_month;
-			let t = document.querySelector('#pjt_detail_item');
-			let clone = document.importNode(t.content, true);
-			
-			let clone_ul = clone.querySelector("ul");
-		
-			$('div.pjt_main_content').append(clone);
-			$(clone_ul).attr('id', pjt_no);
-			$('#' + pjt_no +' p.item_content').text(pjt_title);
-			$('#' + pjt_no +' li.detail_item div p.item_content_date').text(String(pjt_start_year)+'.' + pjt_start_month + '~' + String(pjt_end_year)+ '.' + pjt_end_month );
-			$('#' + pjt_no +' span.item_content_emp').text(pjt_manager_emp);
+			if (data.result == 'success') {
+				console.log('AJAX SUCCESS - ajax_informationItem()');
+				let projectVos = data.projectVos;
+				console.log(data);
+				
+				for(let i = 0; i < projectVos.length; i++ ){
+					let projectVo = data.projectVos[i];
+					
+					let pjt_no = projectVo.pjt_no;
+					let pjt_title = projectVo.pjt_title;
+					let pjt_dep_no = projectVo.pjt_dep.dep_type_no;
+					let pjt_dep_name = projectVo.pjt_dep.dep_type_name;
+					let pjt_manager_emp_no = projectVo.pjt_manager_emp.emp_no;
+					let pjt_manager_emp_name = projectVo.pjt_manager_emp.emp_name;
+					let pjt_start_year = projectVo.pjt_start_year;
+					let pjt_start_month = projectVo.pjt_start_month;
+					let pjt_start_day = projectVo.pjt_start_day;
+					let pjt_end_year = projectVo.pjt_end_year;
+					let pjt_end_month = projectVo.pjt_end_month;
+					let pjt_end_day = projectVo.pjt_end_day;
+					
+					let t = document.querySelector('#project_item');
+					let clone = document.importNode(t.content, true);
+					
+					let clone_div = clone.querySelector(".pjt_content");
+				
+					$('div.pjt_main_content').append(clone);
+					$(clone_div).attr('id', 'pjt_no_' + pjt_no);
+					console.log(projectVo);
+					$('#pjt_no_' + pjt_no +' p.pjt_title').text(pjt_title);
+					console.log($('#' + pjt_no +' p.pjt_title').text());
+					$('#pjt_no_' + pjt_no +' p.pjt_date').text(pjt_start_year + '년 ' + ('00' + pjt_start_month).slice(-2) + '월 ' + ('00' + pjt_start_day).slice(-2) + '일 ~ ' + pjt_end_year + '년 ' + ('00' + pjt_end_month).slice(-2) + '월 ' + ('00' + pjt_end_day).slice(-2)+ '일');
+					$('#pjt_no_' + pjt_no +' span.pjt_manager').text(pjt_dep_name + ' ' + pjt_manager_emp_name);
+				}
 			}
+			
+			
 		},
 		error: function(data){
 			console.log('AJAX ERROR - ajax_registItem()');	

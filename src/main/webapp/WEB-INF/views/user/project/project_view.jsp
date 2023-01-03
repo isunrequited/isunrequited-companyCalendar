@@ -21,183 +21,7 @@
 	
 	<!-- 프로젝트 목록 시작 -->
 	<div class="pjt_main_content">
-		<div class="pjt_detail_content">
-			<ul>
-				<li class="detail_item">
-					<div class="item_content_top">
-						Project
-					</div>
-					<div>
-						<a href="#none"><p class="item_content">임시</p></a>
-					</div>
-					<div>
-						<p class="item_content_date">
-						2022년 12월 01일 ~ 2022년 12월 22일
-						</p>
-					</div>
-					<div>
-						<span class="item_content_emp">김사장</span>
-					</div>
-					<div class="item_content_bot"></div>
-				</li>				
-			</ul>
-			
-		</div>
-
-		<div class="pjt_detail_content">
-			<ul>
-				<li class="detail_item">
-					<div class="item_content_top">
-						Project
-					</div>
-					<div>
-						<a href="#none"><p class="item_content">임시2</p></a>
-					</div>
-					<div>
-						<p class="item_content_date">
-						2022년 12월 01일 ~ 2022년 12월 22일
-						</p>
-					</div>
-					<div>
-						<span class="item_content_emp">김사장</span>
-					</div>
-					<div class="item_content_bot"></div>
-				</li>				
-			</ul>
-			
-		</div>
-		<div class="pjt_detail_content">
-			<ul>
-				<li class="detail_item">
-					<div class="item_content_top">
-						Project
-					</div>
-					<div>
-						<a href="#none"><p class="item_content">임시2</p></a>
-					</div>
-					<div>
-						<p class="item_content_date">
-						2022년 12월 01일 ~ 2022년 12월 22일
-						</p>
-					</div>
-					<div>
-						<span class="item_content_emp">김사장</span>
-					</div>
-					<div class="item_content_bot"></div>
-				</li>				
-			</ul>
-			
-		</div>
-		<div class="pjt_detail_content">
-			<ul>
-				<li class="detail_item">
-					<div class="item_content_top">
-						Project
-					</div>
-					<div>
-						<a href="#none"><p class="item_content">임시2</p></a>
-					</div>
-					<div>
-						<p class="item_content_date">
-						2022년 12월 01일 ~ 2022년 12월 22일
-						</p>
-					</div>
-					<div>
-						<span class="item_content_emp">김사장</span>
-					</div>
-					<div class="item_content_bot"></div>
-				</li>				
-			</ul>
-			
-		</div>
-		<div class="pjt_detail_content">
-			<ul>
-				<li class="detail_item">
-					<div class="item_content_top">
-						Project
-					</div>
-					<div>
-						<a href="#none"><p class="item_content">임시2</p></a>
-					</div>
-					<div>
-						<p class="item_content_date">
-						2022년 12월 01일 ~ 2022년 12월 22일
-						</p>
-					</div>
-					<div>
-						<span class="item_content_emp">김사장</span>
-					</div>
-					<div class="item_content_bot"></div>
-				</li>				
-			</ul>
-			
-		</div>
-		<div class="pjt_detail_content">
-			<ul>
-				<li class="detail_item">
-					<div class="item_content_top">
-						Project
-					</div>
-					<div>
-						<a href="#none"><p class="item_content">임시2</p></a>
-					</div>
-					<div>
-						<p class="item_content_date">
-						2022년 12월 01일 ~ 2022년 12월 22일
-						</p>
-					</div>
-					<div>
-						<span class="item_content_emp">김사장</span>
-					</div>
-					<div class="item_content_bot"></div>
-				</li>				
-			</ul>
-			
-		</div>
-		<div class="pjt_detail_content">
-			<ul>
-				<li class="detail_item">
-					<div class="item_content_top">
-						Project
-					</div>
-					<div>
-						<a href="#none"><p class="item_content">임시2</p></a>
-					</div>
-					<div>
-						<p class="item_content_date">
-						2022년 12월 01일 ~ 2022년 12월 22일
-						</p>
-					</div>
-					<div>
-						<span class="item_content_emp">김사장</span>
-					</div>
-					<div class="item_content_bot"></div>
-				</li>				
-			</ul>
-			
-		</div>
-		<div class="pjt_detail_content">
-			<ul>
-				<li class="detail_item">
-					<div class="item_content_top">
-						Project
-					</div>
-					<div>
-						<a href="#none"><p class="item_content">임시2</p></a>
-					</div>
-					<div>
-						<p class="item_content_date">
-						2022년 12월 01일 ~ 2022년 12월 22일
-						</p>
-					</div>
-					<div>
-						<span class="item_content_emp">김사장</span>
-					</div>
-					<div class="item_content_bot"></div>
-				</li>				
-			</ul>
-			
-		</div>
+		
 		
 	</div>
 	<!-- 프로젝트 목록 끝 -->
@@ -263,13 +87,7 @@
 					<div class="pjt_member_wrap">
 						<select id="pjt_member_multiple_select" name="pjt_member" multiple>
 							<option value="1">김사장</option>
-							<option value="2">Movies, Music & Games</option>
-							<option value="3">Electronics & Computers</option>
-							<option value="4">Home, Garden & Tools</option>
-							<option value="5">Health & Beauty</option>
-							<option value="6">Toys, Kids & Baby</option>
-							<option value="7">Clothing & Jewelry</option>
-							<option value="8">Sports & Outdoors</option>
+							
 						</select>
 					</div>
 					
@@ -339,28 +157,28 @@
 	</div>
 </div>
 	
-<!--		
-<template id = "pjt_detail_item">
-	<div class="pjt_detail_content">
+		
+<template id = "project_item">
+	<div class="pjt_content">
 		<ul>
 			<li class="detail_item">
 			
 				<div class="item_content_top">
-					Project
+					PROJECT
 				</div>
 			
 				<div>
-					<a href="#none"><p class="item_content"></p></a>
+					<a href="#none"><p class="pjt_title"></p></a>
 				</div>
 			
 				<div>
-					<p class="item_content_date">
+					<p class="pjt_date">
 					
 					</p>
 				</div>
 			
 				<div>
-					<span class="item_content_emp"></span>
+					담당: <span class="pjt_manager"></span>
 				</div>
 			
 				<div class="item_content_bot">
@@ -370,7 +188,7 @@
 		</ul>
 		
 	</div>
-</template> -->
+</template>
 
 </section>
 

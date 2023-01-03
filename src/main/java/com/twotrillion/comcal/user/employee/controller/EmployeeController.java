@@ -46,24 +46,24 @@ public class EmployeeController {
         return map;
     }
 
-    @RequestMapping(value = "/get_logged_in_emp_no" , method = RequestMethod.POST)
+    @RequestMapping(value = "/get_logged_in_emp_info" , method = RequestMethod.POST)
     @ResponseBody
-    public Object get_logged_in_emp_no(HttpSession session) {
-        System.out.println("[EmployeeController] get_logged_in_emp_no() called");
+    public Object get_logged_in_emp_info(HttpSession session) {
+        System.out.println("[EmployeeController] get_logged_in_emp_info() called");
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map = employeeService.get_logged_in_emp_no(session);
+        map = employeeService.get_logged_in_emp_info(session);
 
         return map;
     }
 
-    @RequestMapping(value = "/get_logged_in_emp_dep" , method = RequestMethod.POST)
+    @RequestMapping(value = "/get_dep_member_by_dep_no" , method = RequestMethod.POST)
     @ResponseBody
-    public Object get_logged_in_emp_dep(HttpSession session) {
-        System.out.println("[EmployeeController] get_logged_in_emp_dep() called");
+    public Object get_dep_member_by_dep_no(@RequestBody Map<String, Integer> msg, HttpSession session) {
+        System.out.println("[EmployeeController] get_dep_member_by_dep_no() called");
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map = employeeService.get_logged_in_emp_dep(session);
+        map = employeeService.get_dep_member_by_dep_no(msg, session);
 
         return map;
     }

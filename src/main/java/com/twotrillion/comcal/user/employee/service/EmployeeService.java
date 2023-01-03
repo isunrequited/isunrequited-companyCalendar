@@ -190,8 +190,8 @@ public class EmployeeService {
 
     }
 
-    public Map<String, Object> get_logged_in_emp_no(HttpSession session) {
-        System.out.println("[MemberService] get_logged_in_emp_no() CALLED!!");
+    public Map<String, Object> get_logged_in_emp_info(HttpSession session) {
+        System.out.println("[MemberService] get_logged_in_emp_info() CALLED!!");
         Map<String, Object> map = new HashMap<>();
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
@@ -199,23 +199,30 @@ public class EmployeeService {
             map.put("result", "fail");
         } else {
             map.put("result", "success");
-            map.put("logged_in_emp_no", logged_in_employee_vo.getEmp_no());
+            map.put("emp_no", logged_in_employee_vo.getEmp_no());
+            map.put("emp_name", logged_in_employee_vo.getEmp_name());
+            map.put("dep_no", logged_in_employee_vo.getEmp_dep().getDep_type_no());
+            map.put("dep_name", logged_in_employee_vo.getEmp_dep().getDep_type_name());
         }
         return map;
     }
 
-    public Map<String, Object> get_logged_in_emp_dep(HttpSession session) {
-        System.out.println("[MemberService] get_logged_in_emp_dep() CALLED!!");
+    public Map<String, Object> get_dep_member_by_dep_no(Map<String, Integer> msg, HttpSession session) {
+        System.out.println("[MemberService] get_dep_member_by_dep_no() CALLED!!");
+
         Map<String, Object> map = new HashMap<>();
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
             map.put("result", "fail");
         } else {
+
+            List<EmployeeVo> employeeVos =  employeeDao.get_dep_member_by_dep_no(msg.get("dep_no"));
+            System.out.println("employeeVos: " + employeeVos);
             map.put("result", "success");
-            map.put("dep_no", logged_in_employee_vo.getEmp_dep().getDep_type_no());
-            map.put("dep_name", logged_in_employee_vo.getEmp_dep().getDep_type_name());
+            map.put("employeeVos", employeeVos);
         }
+
         return map;
     }
 
