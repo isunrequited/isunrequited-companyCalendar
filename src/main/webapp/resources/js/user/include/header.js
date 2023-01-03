@@ -1,7 +1,7 @@
-$(document).ready(function(){
-	console.log('DOCUMENT READY!!');
-	
-});
+function header_ready() {
+	console.log("HEDEAR READY!!");
+	add_header_events();
+}
 
 function setNowDateTime() {
 	console.log('setNowDateTime() CALLED!');
@@ -53,3 +53,22 @@ function go_work(){
   	});
 }
 
+function add_header_events() {
+    $('.left-side-bar .gnb .display_calendar').click(function() {
+        $('#calenar_section').css('display', 'block');
+        $('#project_section').css('display', 'none');
+        $('#attendance_section').css('display', 'none');
+    });
+
+    $('.left-side-bar .gnb .display_project').click(function() {
+        $('#calenar_section').css('display', 'none');
+        $('#project_section').css('display', 'block');
+        $('#attendance_section').css('display', 'none');
+    });
+
+    $('.left-side-bar .gnb .display_attendance').click(function() {
+        $('#calenar_section').css('display', 'none');
+        $('#project_section').css('display', 'none');
+        $('#attendance_section').css('display', 'block');
+    });
+}

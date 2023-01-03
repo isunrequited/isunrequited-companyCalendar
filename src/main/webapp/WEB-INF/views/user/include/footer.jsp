@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-	<link href="${pageContext.request.contextPath}/resources/css/include/footer.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/resources/css/user/include/footer.css" rel="stylesheet" type="text/css">
 
 <footer>
 	<div id="footer_wrap">

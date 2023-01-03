@@ -1,0 +1,338 @@
+section #pjt_wrap {
+	width: 1400px;
+	height: max-content;
+	margin: auto;
+	overflow: hidden;
+	box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	background: #fff;
+	max-width: 1600px;
+} 
+
+#pjt_wrap .pjt_header {
+	padding: 5px 0;
+	height: 75px;
+	background: linear-gradient(to bottom, #fafbfd 0%, rgba(255, 255, 255, 0) 100%);
+	border-bottom: 1px solid rgba(166, 168, 179, 0.12);
+}
+  
+#pjt_wrap .pjt_header h1 {
+	user-select: none;  
+	padding-left: 25px;
+	font-size: 28px;
+	height: 75px;
+	line-height: 75px;
+	font-weight: bolder;
+}
+
+
+/* MAIN_CONTENT START */
+section #pjt_wrap .pjt_main_content {
+	width: 1400px;
+	margin: 0 auto;
+	padding: 30px;
+	padding-bottom: 0;
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+section #pjt_wrap .pjt_main_content .pjt_detail_content ul {
+	line-height: 40px;
+	border-collapse: collapse;
+	margin-bottom: 3px;
+	list-style: none;
+}
+
+section #pjt_wrap .pjt_main_content .pjt_detail_content ul li {
+	width: 310px;
+	border-radius: 20px;
+	margin-right: 30px;
+	margin-bottom: 30px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+}
+	
+section #pjt_wrap .pjt_main_content .pjt_detail_content ul li div.item_content_top{
+	margin: 0;
+	font-size: 0.9em;
+	font-weight: bolder;
+	color: #2a8ce8;
+	border-bottom: 2.2px solid #ccc;
+}
+
+section #pjt_wrap .pjt_main_content .pjt_detail_content ul li p.item_content{
+	margin: 10px 0 0 0;
+	font-size: 1.4em;
+	font-weight: bolder;
+	position: relative;
+	top: 13px;
+	color: #666666;
+}
+
+section #pjt_wrap .pjt_main_content .pjt_detail_content ul li p.item_content_date{
+	margin: 0;
+	position: relative;
+	font-size: 0.8em;
+}
+
+section #pjt_wrap .pjt_main_content .pjt_detail_content ul li div.item_content_bot{
+	height: 30px;
+	background-color: rgba(69, 161, 247, 0.75);
+	border-radius: 0 0 20px 20px;
+}
+
+/* MAIN_CONTENT END */
+
+/* create project button CSS */
+#create_project_button {
+	position: fixed;
+	z-index: 10000;
+	cursor: pointer;
+	bottom: 55px;
+  	right: 60px;
+}
+  
+#create_project_button:active {
+	color: #4786ff;
+}
+  
+#create_project_button i {
+	font-size: 3.5em;
+}
+  
+/* create project modal CSS */
+#create_project_modal .modal_window {
+    width: 510px;
+}
+
+#create_project_modal .modal_window .project_modal_header .header_word {
+    height: 60px;
+    line-height: 60px;
+    font-size: 1.5em;
+    text-align: center;
+    border-bottom: 1px solid #fafbfd;
+
+}
+
+#create_project_modal .modal_window .project_modal_body {
+    margin-top: 20px;
+}
+
+#create_project_modal .modal_window .project_modal_body .section  { 
+    margin-bottom: 25px;
+}
+
+#create_project_modal .modal_window .project_modal_body .section .section_word {
+    font-size: 1.5em;
+    padding-left: 18px;
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#create_project_modal .modal_window .warning_word {
+    font-size: 0.7em;
+    position: absolute;
+    right: 45px;
+    color: #f8254e;
+    display: none;
+}
+
+#create_project_modal .modal_window .project_modal_body .btn_section {
+    height: 60px;
+    line-height: 60px;
+    display: flex;
+}
+
+#create_project_modal .modal_window .project_modal_body .btn_section > input {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    background-color: #51565d;
+    border-radius: 0px;
+    color: #fafbfd;
+    font-size: 1.5em;
+}
+
+#create_project_modal .modal_window .project_modal_body .btn_section > input:active {
+    background-color: #4786ff;
+}
+
+#create_project_modal .pjt_manage_section .manage_wrap {
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    width: max-content;
+}
+
+#create_project_modal .pjt_manage_section .manage_wrap > input {
+    width: 190px;
+    height: 40px;
+	cursor: default;
+}
+
+#create_project_modal .pjt_manage_section .manage_wrap > input:nth-of-type(1) {
+    margin-right: 40px;
+}
+
+#create_project_modal .pjt_start_end_date_section .datepicker_wrap {
+    width: max-content;
+    margin: 0 auto;
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+#create_project_modal .pjt_start_end_date_section .datepicker_wrap span {
+    font-size: 2em;
+    margin: 0 10px 0;
+}
+
+#create_project_modal .pjt_title_section .pjt_title_wrap {
+    text-align: center;
+}
+
+#create_project_modal .pjt_member_section .pjt_member_wrap {
+	text-align: center;
+}
+
+#create_project_modal .pjt_member_section .pjt_member_wrap > input {
+	width: 428px;
+	height: 50px;
+	font-size: 1.4em;
+	text-overflow: ellipsis;
+	cursor: pointer;
+}
+
+#create_project_modal .btn_section .project_modal_btn {
+    border-top: 1px solid #fafbfd;
+    border-left: 1px solid #fafbfd;
+}
+
+#create_project_modal .btn_section .project_modal_btn:first-child {
+    border-top: 1px solid #fafbfd;
+    border-left: 0px;
+}
+
+/* 프로젝트 상세 정보 modal */
+
+#project_detail_modal input,
+#project_detail_modal select,
+#project_detail_modal .ui-datepicker-trigger,
+#project_detail_modal textarea {
+    cursor: default;
+}
+
+#project_detail_modal .modal_window {
+    width: 510px;
+}
+
+#project_detail_modal .modal_window .project_modal_header .header_word {
+    height: 60px;
+    line-height: 60px;
+    font-size: 1.5em;
+    text-align: center;
+    border-bottom: 1px solid #fafbfd;
+
+}
+
+#project_detail_modal .modal_window .project_modal_body {
+    margin-top: 20px;
+}
+
+#project_detail_modal .modal_window .project_modal_body .section  { 
+    margin-bottom: 25px;
+}
+
+#project_detail_modal .modal_window .project_modal_body .section .section_word {
+    font-size: 1.5em;
+    padding-left: 18px;
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#project_detail_modal .modal_window .warning_word {
+    font-size: 0.7em;
+    position: absolute;
+    right: 45px;
+    color: #f8254e;
+    display: none;
+}
+
+#project_detail_modal .modal_window .project_modal_body .btn_section {
+    height: 60px;
+    line-height: 60px;
+    display: flex;
+}
+
+#project_detail_modal .modal_window .project_modal_body .btn_section > input {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    background-color: #51565d;
+    border-radius: 0px;
+    color: #fafbfd;
+    font-size: 1.5em;
+}
+
+#project_detail_modal .modal_window .project_modal_body .btn_section > input:active {
+    background-color: #4786ff;
+}
+
+#project_detail_modal .pjt_manage_section .manage_wrap {
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    width: max-content;
+}
+
+#project_detail_modal .pjt_manage_section .manage_wrap > input {
+    width: 190px;
+    height: 40px;
+	cursor: default;
+}
+
+#project_detail_modal .pjt_manage_section .manage_wrap > input:nth-of-type(1) {
+    margin-right: 40px;
+}
+
+#project_detail_modal .pjt_start_end_date_section .datepicker_wrap {
+    width: max-content;
+    margin: 0 auto;
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+#project_detail_modal .pjt_start_end_date_section .datepicker_wrap span {
+    font-size: 2em;
+    margin: 0 10px 0;
+}
+
+#project_detail_modal .pjt_title_section .pjt_title_wrap {
+    text-align: center;
+}
+
+#project_detail_modal .pjt_title_section .pjt_title_wrap {
+    text-align: center;
+}
+
+#project_detail_modal .pjt_member_section .pjt_member_wrap {
+	text-align: center;
+}
+
+#project_detail_modal .btn_section .project_modal_btn {
+    border-top: 1px solid #fafbfd;
+    border-left: 1px solid #fafbfd;
+}
+
+#project_detail_modal .btn_section .project_modal_btn:first-child {
+    border-top: 1px solid #fafbfd;
+    border-left: 0px;
+}
+

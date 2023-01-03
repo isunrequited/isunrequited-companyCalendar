@@ -22,18 +22,15 @@
     </div>
 
 
-    <ul>
+    <ul class="gnb">
         <li>
-            <a href="#">켈린더 보기</a>                
+            <div class="display_calendar">켈린더 보기</div>                
         </li>
         <li>
-            <a href="#">스케쥴 보기</a>
+            <div class="display_project">프로젝트 관리</div>
         </li>
         <li>
-            <a href="#">스케쥴 관리</a>
-        </li>
-            <li>
-                <a href="#">근태 관리</a>
+            <div class="display_attendance">근태 관리</div>
         </li>
     </ul>
             

@@ -1,9 +1,4 @@
-// 문서 초기 상태(처음 한번 실행)
-$(document).ready(function() {
-    calendar_ready();
-    
-});
-
+// 캘린더 기본 셋팅
 function calendar_ready() {
     console.log('CALENDAR READY()!!');
     // 오늘 날짜로 셋팅

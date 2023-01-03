@@ -7,13 +7,13 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<jsp:include page="../../include/title.jsp"/>
+	<jsp:include page="../include/title.jsp"/>
 
 	<!-- css -->
 	<link href="<c:url value='/resources/css/user/employee/login_page.css' />" rel="stylesheet" type="text/css">
 
 	<!-- js -->
-	<jsp:include page="../../include/common_js.jsp"/>
+	<jsp:include page="../include/common_js.jsp"/>
 	<script src="<c:url value='/resources/js/user/employee/login_page.js' />" type="text/javascript"></script>
 </head>
 	

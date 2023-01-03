@@ -11,6 +11,7 @@
 <script src="<c:url value="/resources/js/user/calendar/calendar.js"/>" type="text/javascript"></script>
 <script src="<c:url value="/resources/js/user/calendar/calendar_modal.js"/>" type="text/javascript"></script>
 
+<section id="calenar_section">
 
 <!-- 캘린더 -->
 <div id="calendar_wrap">
@@ -20,7 +21,7 @@
 		<h1 class="calendar_year_month">
 			<span class="calendar_year">2018</span>.
 			<span class="calendar_month">11</span>.
-		</h1>`
+		</h1>
 		
 		<!-- 캘린더 월 이동 화살표 -->
 		<div class="calendar_month_arrow">
@@ -314,3 +315,5 @@
 <section class="schedule department">Product Checkup 2</section>
 <section class="schedule company">Product Checkup 2</section> 
 -->
+
+</section>
