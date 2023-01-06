@@ -27,7 +27,6 @@ function loginForm() {
         success: function(data){
 			console.log('login_confirm() ajax SUCCESS');
 			if (data.result == 'success') {
-				alert('로그인에 성공하였습니다.');
 				location.href = ctx + "/";
 			} else {
 				alert('이메일 또는 비밀번호가 다릅니다.');

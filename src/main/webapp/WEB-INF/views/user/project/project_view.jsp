@@ -150,8 +150,7 @@
 			</div>
 			
 			<div class="btn_section">
-				<input class="project_modal_btn" type="button" value="등록" onclick="">
-				<input class="project_modal_btn" type="reset" value="닫기" onclick="">
+				<input class="project_modal_btn" type="reset" value="닫기" onclick="project_detail_modal_close();">
 			</div>
 		</div>
 	</div>

@@ -68,4 +68,14 @@ public class EmployeeController {
         return map;
     }
 
+    @RequestMapping(value = "/logout_confirm" , method = RequestMethod.POST)
+    @ResponseBody
+    public Object logout_confirm(HttpSession session) {
+        System.out.println("[EmployeeController] logout_confirm() called");
+
+        Map<String, String> map = employeeService.logout_confirm(session);
+
+        return map;
+    }
+
 }

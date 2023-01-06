@@ -81,4 +81,26 @@ public class ProjectService {
         return map;
     }
 
+    public Map<String, Object> get_project_detail(HttpSession session, Integer pjt_no) {
+        System.out.println("[ProjectService] get_project_detail() CALLED!!");
+
+        Map<String, Object> map = new HashMap<>();
+
+        EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
+        if (logged_in_employee_vo == null) {
+            map.put("result", "fail");
+        } else {
+            ProjectVo projectVo = projectDao.get_project_detail(pjt_no);
+            List<EmployeeVo> employeeVos = projectDao.get_project_members(pjt_no);
+            if (projectVo != null) {
+                map.put("result", "success");
+                map.put("projectVo", projectVo);
+                map.put("employeeVos", employeeVos);
+            } else {
+                map.put("result", "fail");
+            }
+        }
+
+        return map;
+    }
 }

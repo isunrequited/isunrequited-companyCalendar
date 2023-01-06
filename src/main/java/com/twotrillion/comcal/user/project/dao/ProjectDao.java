@@ -1,6 +1,7 @@
 package com.twotrillion.comcal.user.project.dao;
 
 import com.twotrillion.comcal.user.employee.vo.DepartmentVo;
+import com.twotrillion.comcal.user.employee.vo.EmployeeVo;
 import com.twotrillion.comcal.user.project.vo.ProjectVo;
 import com.twotrillion.comcal.user.schedule.vo.ScheduleVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -200,5 +201,97 @@ public class ProjectDao {
 
         return result;
 
+    }
+
+    public ProjectVo get_project_detail(int pjt_no) {
+        System.out.println("[EmployeeDao] get_project_detail() called");
+
+        String sql = "SELECT p.pjt_no pjt_no, " +
+                "p.pjt_title pjt_title, " +
+                "d.dep_type_no dep_type_no, " +
+                "d.dep_type_name dep_type_name, " +
+                "e.emp_no emp_no, " +
+                "e.emp_name emp_name, " +
+                "p.pjt_start_year pjt_start_year, " +
+                "p.pjt_start_month pjt_start_month, " +
+                "p.pjt_start_day pjt_start_day, " +
+                "p.pjt_end_year pjt_end_year, " +
+                "p.pjt_end_month pjt_end_month, " +
+                "p.pjt_end_day pjt_end_day " +
+                "FROM tbl_pjt p " +
+                "JOIN tbl_emp e " +
+                "ON p.pjt_manager_emp_no = e.emp_no " +
+                "JOIN tbl_dep_type d " +
+                "ON p.pjt_dep_no = d.dep_type_no " +
+                "WHERE p.pjt_no = ?";
+
+        List<ProjectVo> projectVos = new ArrayList<ProjectVo>();
+
+        try {
+
+            projectVos = jdbcTemplate.query(sql, new RowMapper<ProjectVo>() {
+
+                @Override
+                public ProjectVo mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    ProjectVo projectVo = new ProjectVo();
+                    projectVo.setPjt_no(rs.getInt("pjt_no"));
+                    projectVo.setPjt_title(rs.getString("pjt_title"));
+                    projectVo.getPjt_dep().setDep_type_no(rs.getInt("dep_type_no"));
+                    projectVo.getPjt_dep().setDep_type_name(rs.getString("dep_type_name"));
+                    projectVo.getPjt_manager_emp().setEmp_no(rs.getInt("emp_no"));
+                    projectVo.getPjt_manager_emp().setEmp_name(rs.getString("emp_name"));
+                    projectVo.setPjt_start_year(rs.getInt("pjt_start_year"));
+                    projectVo.setPjt_start_month(rs.getInt("pjt_start_month"));
+                    projectVo.setPjt_start_day(rs.getInt("pjt_start_day"));
+                    projectVo.setPjt_end_year(rs.getInt("pjt_end_year"));
+                    projectVo.setPjt_end_month(rs.getInt("pjt_end_month"));
+                    projectVo.setPjt_end_day(rs.getInt("pjt_end_day"));
+
+                    return projectVo;
+                }
+
+            }, pjt_no);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return projectVos.size() > 0 ? projectVos.get(0) : null;
+    }
+
+    public List<EmployeeVo> get_project_members(int pjt_no) {
+        System.out.println("[EmployeeDao] get_project_members() called");
+
+        String sql = "SELECT e.emp_no emp_no, " +
+                "e.emp_name emp_name " +
+                "FROM tbl_emp_pjt ep " +
+                "JOIN tbl_emp e " +
+                "ON ep.emp_no = e.emp_no " +
+                "WHERE ep.pjt_no = ?";
+
+        List<EmployeeVo> employeeVos = new ArrayList<EmployeeVo>();
+
+        try {
+            employeeVos = jdbcTemplate.query(sql, new RowMapper<EmployeeVo>() {
+
+                @Override
+                public EmployeeVo mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    EmployeeVo employeeVo = new EmployeeVo();
+
+                    employeeVo.setEmp_no(rs.getInt("emp_no"));
+                    employeeVo.setEmp_name(rs.getString("emp_name"));
+
+                    System.out.println(employeeVo.getEmp_no());
+
+                    return employeeVo;
+                }
+
+            }, pjt_no);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return employeeVos;
     }
 }

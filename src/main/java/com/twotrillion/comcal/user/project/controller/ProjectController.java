@@ -52,4 +52,14 @@ public class ProjectController {
 
     }
 
+    @RequestMapping(value = "/get_project_detail", method = RequestMethod.POST)
+    @ResponseBody
+    public Object get_project_detail(HttpSession session, @RequestBody Map<String, Integer> msgMap) {
+        System.out.println("[ProjectController] get_project_detail_modal() CALLED!!");
+
+        Map<String, Object> map = projectService.get_project_detail(session, msgMap.get("pjt_no"));
+        return map;
+
+    }
+
 }

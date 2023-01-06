@@ -11,6 +11,7 @@ public class EmployeeVo {
     private String emp_name;
     private DepartmentVo emp_dep;
     private PositionVo emp_pos;
+    private EmpStatus emp_status;
     private String emp_email;
     private String emp_phone;
     private String emp_com_num;
@@ -23,5 +24,6 @@ public class EmployeeVo {
     public EmployeeVo() {
         this.setEmp_dep(new DepartmentVo());
         this.setEmp_pos(new PositionVo());
+        this.setEmp_status(new EmpStatus());
     }
 }

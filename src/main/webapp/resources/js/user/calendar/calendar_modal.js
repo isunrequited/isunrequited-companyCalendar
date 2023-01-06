@@ -89,7 +89,7 @@ function calendar_modal_add_events() {
         if (scd_type_no == 0 || scd_type_no == 5) {
             msg = {};
             $.ajax({
-                url: ctx + "/employee/get_logged_in_emp_no",
+                url: ctx + "/employee/get_logged_in_emp_info",
                 type: "POST",
                 data: JSON.stringify(msg), 
                 contentType: 'application/json; charset=utf-8;', 
@@ -110,7 +110,6 @@ function calendar_modal_add_events() {
                 dataType: "json",
                 success: function(result) {
                     if (result.result == 'success'){
-                        console.log(result.projectVos);
                         let projectVos = result.projectVos;
                         $('#create_schedule_modal select[name="scd_target_no"]').append('<option value="-1" disabled selected style="display: none;">프로젝트</option>')
 
@@ -125,7 +124,7 @@ function calendar_modal_add_events() {
         } else if (scd_type_no == 2) {
             msg = {};
             $.ajax({
-                url: ctx + "/employee/get_logged_in_emp_dep",
+                url: ctx + "/employee/get_logged_in_emp_info",
                 type: "POST",
                 data: JSON.stringify(msg), 
                 contentType: 'application/json; charset=utf-8;', 

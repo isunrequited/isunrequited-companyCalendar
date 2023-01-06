@@ -27,13 +27,36 @@ public class AttendanceController {
     public Object go_work(@RequestBody AttendanceVo attendanceVo, HttpSession session) {
         System.out.println("[AttendanceController] go_work() called");
 
-        EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
-
-        attendanceVo.getEmp_info().setEmp_no(logged_in_employee_vo.getEmp_no());
-
-        Map<String, String> map =  attendanceService.go_work(attendanceVo);
+        Map<String, String> map =  attendanceService.go_work(attendanceVo, session);
 
         return map;
     }
 
+    @RequestMapping(value = "/go_home",method = RequestMethod.POST)
+    @ResponseBody
+    public Object go_home(@RequestBody AttendanceVo attendanceVo, HttpSession session) {
+        System.out.println("[AttendanceController] go_home() called");
+
+        Map<String, String> map =  attendanceService.go_home(attendanceVo, session);
+
+        return map;
+    }
+
+    @RequestMapping(value = "get_attendance_list", method = RequestMethod.POST)
+    @ResponseBody
+    public Object get_attendance_list(@RequestBody Map<String, String> msgMap, HttpSession session) {
+        System.out.println("[AttendanceController] attendanceList() called");
+        Map<String, Object> map = attendanceService.get_attendance_list(msgMap, session);
+
+        return map;
+    }
+
+    @RequestMapping(value = "attendance_check", method = RequestMethod.POST)
+    @ResponseBody
+    public Object attendance_check(HttpSession session) {
+        System.out.println("[AttendanceController] attendance_check() called");
+        Map<String, Object> map = attendanceService.attendance_check(session);
+
+        return map;
+    }
 }

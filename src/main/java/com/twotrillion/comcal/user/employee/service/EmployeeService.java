@@ -19,7 +19,7 @@ public class EmployeeService {
     EmployeeDao employeeDao;
 
     public Map<String, String> login_confirm(EmployeeVo employeeVo, HttpSession session) {
-        System.out.println("[MemberService] login_confirm() called");
+        System.out.println("[EmployeeService] login_confirm() called");
 
         EmployeeVo logged_in_employee_vo = employeeDao.login_confirm(employeeVo);
 
@@ -191,7 +191,7 @@ public class EmployeeService {
     }
 
     public Map<String, Object> get_logged_in_emp_info(HttpSession session) {
-        System.out.println("[MemberService] get_logged_in_emp_info() CALLED!!");
+        System.out.println("[EmployeeService] get_logged_in_emp_info() CALLED!!");
         Map<String, Object> map = new HashMap<>();
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
@@ -208,7 +208,7 @@ public class EmployeeService {
     }
 
     public Map<String, Object> get_dep_member_by_dep_no(Map<String, Integer> msg, HttpSession session) {
-        System.out.println("[MemberService] get_dep_member_by_dep_no() CALLED!!");
+        System.out.println("[EmployeeService] get_dep_member_by_dep_no() CALLED!!");
 
         Map<String, Object> map = new HashMap<>();
 
@@ -218,7 +218,6 @@ public class EmployeeService {
         } else {
 
             List<EmployeeVo> employeeVos =  employeeDao.get_dep_member_by_dep_no(msg.get("dep_no"));
-            System.out.println("employeeVos: " + employeeVos);
             map.put("result", "success");
             map.put("employeeVos", employeeVos);
         }
@@ -226,4 +225,19 @@ public class EmployeeService {
         return map;
     }
 
+    public Map<String, String> logout_confirm(HttpSession session) {
+        System.out.println("[EmployeeService] logout_confirm() CALLED!!");
+
+        Map<String, String> map = new HashMap<>();
+
+        EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
+        if (logged_in_employee_vo == null) {
+            map.put("result", "fail");
+        } else {
+            session.invalidate();
+            map.put("result", "success");
+        }
+
+        return map;
+    }
 }

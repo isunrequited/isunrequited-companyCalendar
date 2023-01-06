@@ -4,5 +4,6 @@ $(document).ready(function(){
     header_ready();
     calendar_ready();
     project_ready();
+    attendance_ready();
 });
 

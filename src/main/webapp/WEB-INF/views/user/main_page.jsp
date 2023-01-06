@@ -32,9 +32,8 @@
 			<jsp:include page="./calendar/calendar_view.jsp"/>
 			
 			<jsp:include page="./project/project_view.jsp"/>
-			
-			<section id="attendance_section">
-			</section>
+
+			<jsp:include page="./attendance/attendance_list_view.jsp"/>
 		</div>
 		
 		<jsp:include page="./include/footer.jsp"/>
