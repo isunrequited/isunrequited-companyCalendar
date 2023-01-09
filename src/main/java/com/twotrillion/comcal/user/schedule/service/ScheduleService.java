@@ -31,7 +31,7 @@ public class ScheduleService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             scheduleVo.getScd_writer_emp_info().setEmp_no(logged_in_employee_vo.getEmp_no());
 
@@ -66,7 +66,7 @@ public class ScheduleService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             ScheduleVo scheduleVo = scheduleDao.get_schedule_by_no(scd_no);
             if (scheduleVo != null) {
@@ -104,7 +104,7 @@ public class ScheduleService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             int schedule_writer_emp_no = scheduleDao.schedule_auth_confirm(scd_no);
             if (schedule_writer_emp_no == logged_in_employee_vo.getEmp_no()) {
@@ -123,7 +123,7 @@ public class ScheduleService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             int result = scheduleDao.modify_schedule(scheduleVo);
             if (result > 0 ) {
@@ -142,7 +142,7 @@ public class ScheduleService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             int result = scheduleDao.delete_schedule(scd_no);
             if (result > 0 ) {
@@ -161,7 +161,7 @@ public class ScheduleService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             if (infosForGetScheduleVo.isPrivate_schedule() || infosForGetScheduleVo.isProject_schedule() || infosForGetScheduleVo.isDepartment_schedule() || infosForGetScheduleVo.isCompany_schedule()) {
                 infosForGetScheduleVo.setEmp_no(logged_in_employee_vo.getEmp_no());
@@ -198,7 +198,7 @@ public class ScheduleService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             infosForGetScheduleVo.setEmp_no(logged_in_employee_vo.getEmp_no());
             infosForGetScheduleVo.setDep_no(logged_in_employee_vo.getEmp_dep().getDep_type_no());

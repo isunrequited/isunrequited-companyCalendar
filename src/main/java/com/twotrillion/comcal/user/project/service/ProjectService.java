@@ -24,7 +24,7 @@ public class ProjectService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             List<ProjectVo> projectVos = projectDao.get_projects_title_by_emp_no(logged_in_employee_vo.getEmp_no());
             if (projectVos != null) {
@@ -45,7 +45,7 @@ public class ProjectService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             int pjt_no = projectDao.create_project_confirm(projectVo);
             int result = projectDao.create_emp_project_confirm(pjt_no, projectVo);
@@ -66,7 +66,7 @@ public class ProjectService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             List<ProjectVo> projectVos = projectDao.get_projects_by_emp_no(logged_in_employee_vo.getEmp_no());
 
@@ -88,7 +88,7 @@ public class ProjectService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             ProjectVo projectVo = projectDao.get_project_detail(pjt_no);
             List<EmployeeVo> employeeVos = projectDao.get_project_members(pjt_no);

@@ -27,6 +27,17 @@
   crossorigin="anonymous">
 </script>
 
+<!-- console.log -->
+<script>
+  var console_log_flag = true;
+
+  if (!console_log_flag) {
+    console.log = function(){};
+    console.warn = function(){};
+    console.error = function(){};
+  }
+</script>
+
 <!-- datepicker -->
 <script>
 $(function(){

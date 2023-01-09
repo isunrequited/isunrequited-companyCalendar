@@ -324,8 +324,8 @@ function ajax_get_schedule() {
                 $('#calendar_wrap .calendar_body .schedule').click(function(e){
                     schedule_click_event(e.target, 'calendar')}
                 );
-            } else {
-                console.log('일정 불러오기 실패');
+            } else if (result.result == 'session-fail') {
+                location.href ="/comcal";
             }
         },
         error : function(result) {

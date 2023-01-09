@@ -84,13 +84,17 @@ function display_create_project_modal() {
 							
 							
 							set_multiselect();
+						} else if (result2.result == 'session-fail') {
+							location.href ="/comcal";
 						}
 					}
 				});
 				
 				$('#create_project_modal').css('display', 'block');
                 
-            }
+            } else if (result.result == 'session-fail') {
+				location.href ="/comcal";
+			}
         }
     });
 
@@ -152,12 +156,14 @@ function create_project_modal_confirm() {
 			contentType: 'application/json; cahrset=utf-8;',
 			datatype: 'json',
 			success: function(data){
-				if(data.result == 'success') {
+				if (data.result == 'success') {
 					form.reset();
 					create_project_modal_close();
 					get_project_list();
+				} else if (data.result == 'session-fail') {
+					location.href ="/comcal";
 				}
-			}
+			} 
 		
 		});
 	}
@@ -215,6 +221,8 @@ function get_project_list(){
 						display_project_detail_modal(pjt_no);
 					})
 				}
+			} else if (data.result == 'session-fail') {
+				location.href ="/comcal";
 			}
 			
 			
@@ -283,6 +291,8 @@ function display_project_detail_modal(pjt_no){
                 $('#project_detail_modal input[name="pjt_end_date"]').datepicker("option", "disabled", true);					
 				$('#project_detail_modal input[name="pjt_title"]').val(pjt_title);
 				$('#project_detail_modal textarea[name="pjt_member"]').val(pjt_member);
+			} else if (data.result == 'session-fail') {
+				location.href ="/comcal";
 			}
 			
 		},

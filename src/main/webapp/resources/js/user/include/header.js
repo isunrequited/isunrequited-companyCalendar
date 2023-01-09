@@ -10,7 +10,7 @@ function setNowDateTime() {
 	let options = { hour: "numeric", minute: "numeric", second: "numeric", hour12: false };
 	let now = new Date();
 	let year = now.getFullYear();
-	let month = now.getMonth();
+	let month = now.getMonth() + 1;
 	let day = now.getDate();
 	let time = now.toLocaleTimeString("en-US", options);
 
@@ -44,6 +44,9 @@ function go_work(){
 			success: function(data){
 				if (data.result == 'success') {
 					check_att_status();
+					ajax_getAttendanceList();
+				} else if (data.result == 'session-fail') {
+					location.href ="/comcal";
 				}
 			},
 			error: function(){
@@ -78,6 +81,9 @@ function go_home(){
 			success: function(data){
 				if (data.result == 'success') {
 					check_att_status();
+					ajax_getAttendanceList();
+				} else if (data.result == 'session-fail') {
+					location.href ="/comcal";
 				}
         	},
 			error: function(){
@@ -96,9 +102,7 @@ function logout(){
             success:function(data){
 			if (data.result == 'success') {
                 location.href ="/comcal";
-            } else {
-				alert('fail');
-			}
+            }
         },
         error: function(){
             alert("err");
@@ -117,7 +121,7 @@ function check_att_status() {
 		contentType: 'application/json; charset=utf-8;', 
 		dataType: 'json',
 		success: function(result){
-			if(result.result == 'success') {
+			if (result.result == 'success') {
 				if (result.att_status == 0) {
 					$(".att_btn").css("display","block");
 					$(".home_btn").css("display","none");
@@ -125,6 +129,8 @@ function check_att_status() {
 					$(".att_btn").css("display","none");
 					$(".home_btn").css("display","block");
 				}
+			} else if (result.result == 'session-fail') {
+				location.href ="/comcal";
 			}
 		}
 	});

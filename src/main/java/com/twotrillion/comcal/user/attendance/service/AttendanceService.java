@@ -27,7 +27,7 @@ public class AttendanceService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             int hour = Integer.parseInt(attendanceVo.getAtd_start_time().split(":")[0]);
 
@@ -58,14 +58,18 @@ public class AttendanceService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             int hour = Integer.parseInt(attendanceVo.getAtd_end_time().split(":")[0]);
-            if (hour < 18) {
+            boolean late_for_work = attendanceDao.late_for_work_check(logged_in_employee_vo.getEmp_no());
+            if (hour < 15) {
                 attendanceVo.getAtd_type().setAtd_type_no(3);
-            } else {
+            } else if (!late_for_work) {
                 attendanceVo.getAtd_type().setAtd_type_no(0);
+            } else {
+                attendanceVo.getAtd_type().setAtd_type_no(1);
             }
+
             attendanceVo.getEmp_info().setEmp_no(logged_in_employee_vo.getEmp_no());
 
             int result = attendanceDao.go_home(attendanceVo);
@@ -92,7 +96,7 @@ public class AttendanceService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             attendanceVos = attendanceDao.get_attendance_list(criteria, logged_in_employee_vo.getEmp_no());
             totalListCnt = attendanceDao.get_total_attendance_list_cnt();
@@ -116,7 +120,7 @@ public class AttendanceService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             int att_status = attendanceDao.attendance_check(logged_in_employee_vo.getEmp_no());
             if (att_status == -1) {

@@ -15,7 +15,7 @@
 	
 	<div class="atd_header">
 		<h1>
-			<span></span>님의 근태 목록
+			<span></span>님의 근태 기록
 		</h1>
 	</div>
 	

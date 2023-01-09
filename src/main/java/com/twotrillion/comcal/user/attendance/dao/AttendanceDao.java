@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import javax.accessibility.AccessibleText;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -204,5 +205,38 @@ public class AttendanceDao {
         }
 
         return employeeVos.size() > 0 ? employeeVos.get(0).getEmp_status().getEmp_status_no() : -1;
+    }
+
+    public boolean late_for_work_check(int emp_no) {
+        String sql = "SELECT atd_type_no FROM tbl_attendance_record " +
+                "WHERE atd_rcd_no = " +
+                "(SELECT atd_rcd_no FROM " +
+                "(SELECT atd_rcd_no FROM tbl_attendance_record " +
+                "WHERE emp_no = ? ORDER BY atd_rcd_no DESC LIMIT 1) ar) ";
+
+        boolean result = false;
+
+        try {
+            List<AttendanceVo> sql_result = new ArrayList<>();
+            sql_result = jdbcTemplate.query(sql, new RowMapper<AttendanceVo>() {
+                @Override
+                public AttendanceVo mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    AttendanceVo attendanceVo = new AttendanceVo();
+                    attendanceVo.getAtd_type().setAtd_type_no(rs.getInt("atd_type_no"));
+                    return attendanceVo;
+                }
+            }, emp_no);
+
+            if (sql_result.size() > 0) {
+                if (sql_result.get(0).getAtd_type().getAtd_type_no() == 1) {
+                    result = true;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }

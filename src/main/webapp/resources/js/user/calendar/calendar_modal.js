@@ -96,7 +96,9 @@ function calendar_modal_add_events() {
                 dataType: "json",
                 success: function(result) {
                     if (result.result == 'success'){
-                        $('#create_schedule_modal select[name="scd_target_no"]').append('<option value="' + result.logged_in_emp_no + '" disabled selected style="display: none;">개인</option>')
+                        $('#create_schedule_modal select[name="scd_target_no"]').append('<option value="' + result.emp_no + '" disabled selected style="display: none;">개인</option>')
+                    } else if (result.result == 'session-fail') {
+                        location.href ="/comcal";
                     }
                 }
             });
@@ -117,6 +119,8 @@ function calendar_modal_add_events() {
 
                             $('#create_schedule_modal select[name="scd_target_no"]').append('<option value="' + projectVos[i].pjt_no + '">' + projectVos[i].pjt_title + '</option>')
                         }
+                    } else if (result.result == 'session-fail') {
+                        location.href ="/comcal";
                     }
                 }
             });
@@ -132,6 +136,8 @@ function calendar_modal_add_events() {
                 success: function(result) {
                     if (result.result == 'success'){
                         $('#create_schedule_modal select[name="scd_target_no"]').append('<option value="' + result.dep_no + '" disabled selected style="display: none;">' + result.dep_name + '</option>')
+                    } else if (result.result == 'session-fail') {
+                        location.href ="/comcal";
                     }
                 }
             });
@@ -192,6 +198,8 @@ function create_schedule_confirm() {
                     form.reset();
                     ajax_get_schedule();
                     create_schedule_modal_close();
+                } else if (result.result == 'session-fail') {
+                    location.href ="/comcal";
                 } else {
                     alert('일정 등록에 실패하였습니다.');
                 }
@@ -281,8 +289,8 @@ function display_schedule_detail_modal(scd_no, prev_page) {
                 $('#display_schedule_detail_modal').data('prev_page', prev_page);
                 $('#display_schedule_detail_modal').css('display', 'block');
 
-            } else {
-                console.log("AJAX get_schedule_by_no FAIL!!");
+            } else if (result.result == 'session-fail') {
+                location.href ="/comcal";
             }
         },
         error: function(result) {
@@ -350,12 +358,11 @@ function display_modify_schedule_modal() {
             
                             $('#modify_schedule_modal').css('display', 'block');
             
-                        } else {
-                            console.log("AJAX get_schedule_by_no FAIL!!");
-                        }
+                        } else if (result.result == 'session-fail') {
+							location.href ="/comcal";
+						}
                     },
                     error: function(result) {
-                        console.log("AJAX get_schedule_by_no FAIL!!");
                     }
                  });
             } else {
@@ -455,12 +462,14 @@ function delete_schedule() {
                 $('#modify_schedule_modal').css('display', 'none');
                 btn_display();
                 ajax_get_schedule();
+            } else if (result.result == 'session-fail') {
+                location.href ="/comcal";
             } else {
-                console.log('일정 삭제 실패');
+                alert('일정 삭제에 실패하였습니다.');
             }
         },
         error: function(result) {
-            console.log('일정 삭제 실패');
+            alert('일정 삭제에 실패하였습니다.');
         }
     })
 }
@@ -592,7 +601,8 @@ function set_schedule_list_modal() {
                     });
                 } 
 
-
+            } else if (result.result == 'session-fail') {
+                location.href ="/comcal";
             }
         },
         error: function(result) {

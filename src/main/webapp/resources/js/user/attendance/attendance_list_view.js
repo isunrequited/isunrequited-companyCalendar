@@ -19,7 +19,9 @@ function set_attendance_header() {
 		success : function(result) {
 			if(result.result == 'success') {
 				$('#atd_wrap .atd_header h1 span').text(result.emp_name);
-			}
+			} else if (result.result == 'session-fail') {
+                location.href ="/comcal";
+            }
 		}
 	});
 }
@@ -141,7 +143,9 @@ function ajax_getAttendanceList() {
 				}
 				
 				$('#atd_wrap > div.page_wrap > div.page_goto > span.page_total_num').html(addComma(pageMakerVo.totalPage.toString()));	
-			}
+			} else if (result.result == 'session-fail') {
+                location.href ="/comcal";
+            }
 
 		},
 		error : function(result) {

@@ -52,7 +52,7 @@ public class EmployeeService {
         employeeVo.setEmp_gender("M");
         employeeVo.setEmp_birth("1970년 1월 1일");
         employeeVo.setEmp_post("대전광역시 0구 00동 00아파트");
-        employeeVo.setEmp_superior_emp_no(0);
+        employeeVo.setEmp_superior_emp_no(1);
         employeeVo.setEmp_pw("1111");
         employeeVos.add(employeeVo);
 
@@ -68,7 +68,7 @@ public class EmployeeService {
         employeeVo.setEmp_gender("M");
         employeeVo.setEmp_birth("1978년 5월 30일");
         employeeVo.setEmp_post("대전광역시 0구 00동 00아파트");
-        employeeVo.setEmp_superior_emp_no(0);
+        employeeVo.setEmp_superior_emp_no(1);
         employeeVo.setEmp_pw("1111");
         employeeVos.add(employeeVo);
 
@@ -82,7 +82,7 @@ public class EmployeeService {
         employeeVo.setEmp_gender("W");
         employeeVo.setEmp_birth("1988년 7월 21일");
         employeeVo.setEmp_post("대전광역시 0구 00동 00아파트");
-        employeeVo.setEmp_superior_emp_no(1);
+        employeeVo.setEmp_superior_emp_no(2);
         employeeVo.setEmp_pw("1111");
         employeeVos.add(employeeVo);
 
@@ -96,7 +96,7 @@ public class EmployeeService {
         employeeVo.setEmp_gender("M");
         employeeVo.setEmp_birth("1994년 2월 12일");
         employeeVo.setEmp_post("대전광역시 0구 00동 00아파트");
-        employeeVo.setEmp_superior_emp_no(1);
+        employeeVo.setEmp_superior_emp_no(2);
         employeeVo.setEmp_pw("1111");
         employeeVos.add(employeeVo);
 
@@ -111,7 +111,7 @@ public class EmployeeService {
         employeeVo.setEmp_gender("M");
         employeeVo.setEmp_birth("1980년 10월 10일");
         employeeVo.setEmp_post("대전광역시 0구 00동 00아파트");
-        employeeVo.setEmp_superior_emp_no(0);
+        employeeVo.setEmp_superior_emp_no(1);
         employeeVo.setEmp_pw("1111");
         employeeVos.add(employeeVo);
 
@@ -125,7 +125,7 @@ public class EmployeeService {
         employeeVo.setEmp_gender("M");
         employeeVo.setEmp_birth("1990년 12월 1일");
         employeeVo.setEmp_post("대전광역시 0구 00동 00아파트");
-        employeeVo.setEmp_superior_emp_no(4);
+        employeeVo.setEmp_superior_emp_no(5);
         employeeVo.setEmp_pw("1111");
         employeeVos.add(employeeVo);
 
@@ -139,7 +139,7 @@ public class EmployeeService {
         employeeVo.setEmp_gender("M");
         employeeVo.setEmp_birth("1992년 7월 21일");
         employeeVo.setEmp_post("대전광역시 0구 00동 00아파트");
-        employeeVo.setEmp_superior_emp_no(4);
+        employeeVo.setEmp_superior_emp_no(5);
         employeeVo.setEmp_pw("1111");
         employeeVos.add(employeeVo);
 
@@ -154,7 +154,7 @@ public class EmployeeService {
         employeeVo.setEmp_gender("M");
         employeeVo.setEmp_birth("1975년 5월 3일");
         employeeVo.setEmp_post("대전광역시 0구 00동 00아파트");
-        employeeVo.setEmp_superior_emp_no(0);
+        employeeVo.setEmp_superior_emp_no(1);
         employeeVo.setEmp_pw("1111");
         employeeVos.add(employeeVo);
 
@@ -168,7 +168,7 @@ public class EmployeeService {
         employeeVo.setEmp_gender("M");
         employeeVo.setEmp_birth("1983년 11월 11일");
         employeeVo.setEmp_post("대전광역시 0구 00동 00아파트");
-        employeeVo.setEmp_superior_emp_no(7);
+        employeeVo.setEmp_superior_emp_no(8);
         employeeVo.setEmp_pw("1111");
         employeeVos.add(employeeVo);
 
@@ -182,7 +182,7 @@ public class EmployeeService {
         employeeVo.setEmp_gender("M");
         employeeVo.setEmp_birth("1995년 9월 19일");
         employeeVo.setEmp_post("대전광역시 0구 00동 00아파트");
-        employeeVo.setEmp_superior_emp_no(7);
+        employeeVo.setEmp_superior_emp_no(8);
         employeeVo.setEmp_pw("1111");
         employeeVos.add(employeeVo);
 
@@ -196,7 +196,7 @@ public class EmployeeService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             map.put("result", "success");
             map.put("emp_no", logged_in_employee_vo.getEmp_no());
@@ -214,7 +214,7 @@ public class EmployeeService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
 
             List<EmployeeVo> employeeVos =  employeeDao.get_dep_member_by_dep_no(msg.get("dep_no"));
@@ -232,7 +232,7 @@ public class EmployeeService {
 
         EmployeeVo logged_in_employee_vo = (EmployeeVo) session.getAttribute("logged_in_employee_vo");
         if (logged_in_employee_vo == null) {
-            map.put("result", "fail");
+            map.put("result", "session-fail");
         } else {
             session.invalidate();
             map.put("result", "success");
