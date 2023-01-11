@@ -156,7 +156,6 @@ public class ProjectDao {
 
         try {
             jdbcTemplate.update(new PreparedStatementCreator() {
-
                 @Override
                 public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
                     PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -200,7 +199,6 @@ public class ProjectDao {
         }
 
         return result;
-
     }
 
     public ProjectVo get_project_detail(int pjt_no) {

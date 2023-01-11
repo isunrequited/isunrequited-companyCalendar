@@ -245,8 +245,8 @@ public class ScheduleDao {
 
         String sql = "SELECT * FROM tbl_scd " +
                 "WHERE scd_writer_emp_no = ? " +
-                "AND ((CONCAT(scd_start_year, '-', scd_start_month, '-', scd_start_day) BETWEEN ? AND ?) " +
-                "OR (CONCAT(scd_end_year, '-', scd_end_month, '-', scd_end_day) BETWEEN ? AND ?)) AND ( ";
+                "AND ((DATE(CONCAT(scd_start_year, '-', scd_start_month, '-', scd_start_day)) BETWEEN DATE(?) AND DATE(?)) " +
+                "OR (DATE(CONCAT(scd_end_year, '-', scd_end_month, '-', scd_end_day)) BETWEEN DATE(?) AND DATE(?))) AND ( ";
 
         if (infosForGetScheduleVo.isPrivate_schedule()) {
             sql += "(scd_auth_range_type_no = 0 " +
